@@ -27,3 +27,8 @@ Le site web tourne dans le ReactJS ecosystème plus précisément du NextJS et d
 ## Discussion
 - Slack link (most discussion)
 
+
+
+## Development version
+
+- You can check the latest online version here [https://covid19htweb.now.sh/](https://covid19htweb.now.sh/)
