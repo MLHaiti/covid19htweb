@@ -1,0 +1,18 @@
+html,
+body,
+#__next {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: auto;
+  font-display: optional;
+}
+
+body {
+  padding: 0 16px;
+}
+
+ol, ul {
+  /* margin-left: 2em; */
+}
+
