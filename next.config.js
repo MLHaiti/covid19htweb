@@ -1,6 +1,7 @@
 const withPlugins = require("next-compose-plugins");
 const withImages = require("next-images");
 const path = require("path");
+const withPWA = require("next-pwa");
 
 const nextConfig = {
   reactStrictMode: true,
@@ -18,6 +19,9 @@ const nextConfig = {
 };
 
 module.exports = withPlugins(
-  [[withImages, { exclude: path.resolve(__dirname, "src/assets/svg") }]],
+  [
+    [withPWA, { pwa: { dest: "public" } }],
+    [withImages, { exclude: path.resolve(__dirname, "src/assets/svg") }],
+  ],
   nextConfig
 );
