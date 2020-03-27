@@ -5,11 +5,5 @@ body,
   width: 100%;
   position: relative;
   overflow: auto;
-  font-display: optional;
-}
-
-
-ol, ul {
-  /* margin-left: 2em; */
 }
 

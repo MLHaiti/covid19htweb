@@ -8,6 +8,8 @@ export const Hero = ({ text }) => (
     textAlign={{ base: "left", lg: "center" }}
     fontSize={{ base: "lg" }}
     marginY={{ base: 4, lg: 8 }}
+    fontFamily="mono"
+    fontWeight="normal"
   >
     {text}
   </Heading>
@@ -18,5 +20,5 @@ Hero.propTypes = {
 };
 
 Hero.defaultProps = {
-  text: "Enfòmasyon k'ap pèmèt ou sove lavi ou ak lavi fanmi/zanmi ou.",
+  text: "Toujou Proteje tèt ak moun ki bò kote ou.",
 };

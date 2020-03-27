@@ -6,6 +6,7 @@ import {
   SectionWithCollapse,
   LinkToPage,
   CollapseSection,
+  CollapseContent,
   Divider,
 } from "components";
 import { Link, Flex } from "@chakra-ui/core";
@@ -15,16 +16,17 @@ import fiveActions from "../data/five-actions";
 export default () => (
   <>
     <Head>
-      <title>codvid19ht</title>
+      <title>Santepam</title>
     </Head>
     <Layout>
       <br />
       <SectionWithCollapse title="5 konpòtman pou sove lavi ou">
         {fiveActions.map((el) => (
-          <CollapseSection key={el.title} title={el.title}>
+          <CollapseContent key={el.title} title={el.title}>
             {el.value}
-          </CollapseSection>
+          </CollapseContent>
         ))}
+        <Divider />
         <Flex direction="row" justifyContent="flex-end">
           <NextLink href="/poukisa-prekosyon-sa-yo" passHref>
             <Link
@@ -45,10 +47,17 @@ export default () => (
           </NextLink>
         </Flex>
       </SectionWithCollapse>
-      <Divider />
+
       <LinkToPage
-        text="Kisa ki nouvo koronaviris la"
+        text="Kisa ki nouvo korona viris la"
         href="/kisa-ki-nouvo-korona-viris-la"
+        headingProps={{ marginTop: "12" }}
+      />
+
+      <LinkToPage
+        text="Konsèy pou chak moun"
+        href="/konsey-pou-chak-moun"
+        headingProps={{ marginTop: "12" }}
       />
     </Layout>
   </>

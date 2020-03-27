@@ -35,6 +35,15 @@ class MyDocument extends Document {
           />
           <link rel="manifest" href="/manifest.json" />
           <link rel="shortcut icon" href="/icons/favicon.ico" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Muli&family=Sen&display=swap"
+            rel="stylesheet"
+          />
+
+          <link
+            href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />

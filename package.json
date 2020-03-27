@@ -4,8 +4,9 @@
   "private": true,
   "license": "ISC",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "clean": "rm -rf .next && rm -f public/sw* && rm -f public/workbox*",
+    "dev": "yarn clean && next dev",
+    "build": "yarn clean && next build",
     "start": "next start",
     "lint": "eslint . --ext .js,.jsx --ignore-path .gitignore",
     "lint:fix": "eslint . --ext .js,.jsx --fix --ignore-path .gitignore",

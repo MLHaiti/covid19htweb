@@ -4,8 +4,8 @@ export const theme = {
   ...chakraTheme,
   fonts: {
     ...chakraTheme.fonts,
-    body: `"Hepta Slab", serif`,
-    heading: `"IBM Plex Mono", monospace`,
-    mono: "Menlo, monospace",
+    body: `"Muli", sans-serif`,
+    heading: `"Sen", sans-serif`,
+    mono: "PT Mono, monospace",
   },
 };

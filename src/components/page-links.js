@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import NextLink from "next/link";
 import T from "prop-types";
-import { Box, Collapse, Heading, Icon } from "@chakra-ui/core";
+import { Box, Collapse, Heading, Icon, Link } from "@chakra-ui/core";
 
-export const LinkToPage = ({ text, href }) => (
-  <Heading as="h3" size="md" fontWeight="normal">
+export const LinkToPage = ({ text, href, headingProps = {} }) => (
+  <Heading
+    as="h3"
+    size="md"
+    fontWeight="normal"
+    fontSize="3xl"
+    {...headingProps}
+  >
     <NextLink href={href}>
       <a>{text}</a>
     </NextLink>
@@ -16,20 +22,21 @@ export const SectionWithCollapse = ({ title, children }) => {
   return (
     <Box>
       <Heading
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           setShow(!show);
         }}
         as="h3"
         size="md"
         fontWeight="normal"
       >
-        <Box as="span" mr="2">
+        <Box as="span" mr="2" fontSize="3xl">
           {title}
         </Box>
         {show ? (
-          <Icon name="chevron-up" size="24px" />
+          <Icon name="chevron-up" size="28px" />
         ) : (
-          <Icon name="chevron-down" size="24px" />
+          <Icon name="chevron-down" size="28px" />
         )}
       </Heading>
       <Collapse mt={4} isOpen={show}>
@@ -44,16 +51,16 @@ SectionWithCollapse.propTypes = {
   children: T.node.isRequired,
 };
 
-export const CollapseSection = ({ title, children }) => (
-  <Box marginY="4">
-    <Box fontWeight={600} fontSize="2xl" mb="2">
+export const CollapseContent = ({ title, children }) => (
+  <Box>
+    <Heading as="h4" size="md" fontFamily="mono" marginTop="8" marginBottom="4">
       {title}
-    </Box>
+    </Heading>
     <Box>{children}</Box>
   </Box>
 );
 
-CollapseSection.propTypes = {
+CollapseContent.propTypes = {
   title: T.string.isRequired,
   children: T.node.isRequired,
 };

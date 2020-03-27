@@ -30,3 +30,6 @@ ignore
 
 **/public/workbox-*.map
 **/public/sw.js.*
+
+
+**/src/middleware

@@ -1,4 +1,5 @@
 import React from "react";
+import NextLink from "next/link";
 import {
   Box,
   Flex,
@@ -10,54 +11,43 @@ import {
   DrawerHeader,
   DrawerBody,
   CloseButton,
+  Heading,
 } from "@chakra-ui/core";
+
+import { maxWidth } from "./common";
+import { TopMenu } from "./top-menu";
 
 export default () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const onClick = () => {
-    console.log("click");
-  };
   return (
     <>
       <Flex
         flexDirection="row"
         marginX="auto"
-        maxWidth="960px"
+        maxWidth={maxWidth}
         justifyContent="space-between"
         width="100%"
         padding="16px"
+        // fontFamily="mono"
       >
-        <Box>Santepam</Box>
-        <Button variantColor="teal" variant="link" onClick={onOpen}>
+        <Heading fontFamily="mono" as="h3" fontWeight="normal">
+          <NextLink href="/">
+            <a>Santepam</a>
+          </NextLink>
+        </Heading>
+        <Button variantColor="teal" size="lg" variant="link" onClick={onOpen}>
           Meni
         </Button>
       </Flex>
       <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader
-            borderBottomWidth="1px"
-            display="flex"
-            flexDirection="row"
-          >
-            <Box
-              as="span"
-              fontSize="md"
-              display="inline-block"
-              marginRight="auto"
-            >
-              Meni Prensipal
-            </Box>
-            <CloseButton onClick={onClose} />
-            {/* <Button
-              variantColor="teal"
-              variant="link"
-              fontSize="sm"
-              onClick={onClose}
-            >
-              Fèmen
-            </Button> */}
+          <DrawerHeader>
+            <Flex direction="row">
+              <Box marginRight="auto">Meni Prensipal</Box>
+              <CloseButton onClick={onClose} />
+            </Flex>
           </DrawerHeader>
           <DrawerBody>
             <TopMenu close={onClose} />
@@ -67,14 +57,3 @@ export default () => {
     </>
   );
 };
-
-const TopMenu = ({ close }) => (
-  <div>
-    <Flex direction="row" justifyContent="center" marginY="4">
-      {/* <Button variantColor="teal" variant="link" fontSize="md" onClick={close}>
-        Fèmen
-      </Button> */}
-      <CloseButton onClick={close} />
-    </Flex>
-  </div>
-);
