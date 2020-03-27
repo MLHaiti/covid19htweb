@@ -18,10 +18,18 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins(
-  [
-    [withPWA, { pwa: { dest: "public" } }],
-    [withImages, { exclude: path.resolve(__dirname, "src/assets/svg") }],
-  ],
-  nextConfig
-);
+const exportByEnv =
+  process.env.NODE_ENV === "development"
+    ? withPlugins(
+        [[withImages, { exclude: path.resolve(__dirname, "src/assets/svg") }]],
+        nextConfig
+      )
+    : withPlugins(
+        [
+          [withPWA, { pwa: { dest: "public" } }],
+          [withImages, { exclude: path.resolve(__dirname, "src/assets/svg") }],
+        ],
+        nextConfig
+      );
+
+module.exports = exportByEnv;

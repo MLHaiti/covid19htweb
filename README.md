@@ -32,3 +32,10 @@ Le site web tourne dans le ReactJS ecosystème plus précisément du NextJS et d
 ## Development version
 
 - You can check the latest online version here [https://covid19htweb.now.sh/](https://covid19htweb.now.sh/)
+
+
+## Important TODO List before launch
+
+- Configure next seo
+- Dynanically set base url in project based on environment
+- Tune fune sharing for each platform

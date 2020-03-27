@@ -8,9 +8,6 @@ body,
   font-display: optional;
 }
 
-body {
-  padding: 0 16px;
-}
 
 ol, ul {
   /* margin-left: 2em; */
