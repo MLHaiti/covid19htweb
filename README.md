@@ -34,8 +34,9 @@ Le site web tourne dans le ReactJS ecosystème plus précisément du NextJS et d
 - You can check the latest online version here [https://covid19htweb.now.sh/](https://covid19htweb.now.sh/)
 
 
-## Important TODO List before launch
+## Important TODO List before public launch
 
 - Configure next seo
-- Dynanically set base url in project based on environment
-- Tune fune sharing for each platform
+- Dynamically set base url in project based on environment
+- Configure haring for each platform
+- Need Website to try find fresh information first or completely remove PWA. It seems it needs to do cache fall back
