@@ -12,16 +12,24 @@ import {
   Link,
   InputGroup,
   InputLeftElement,
+  InputRightElement,
   Icon,
   Text,
-  InputRightElement,
   useToast,
 } from "@chakra-ui/core";
 import fetch from "utils/fetch";
+
 import { AuthLayout } from "components";
 
-const Login = () => {
-  const { handleSubmit, errors, register, setValue, formState } = useForm();
+const Signup = () => {
+  const {
+    handleSubmit,
+    errors,
+    register,
+    getValues,
+    setValue,
+    formState,
+  } = useForm();
   const [viewPass, setViewPass] = useState(false);
   const [failed, setFailed] = useState("");
   const toast = useToast();
@@ -29,10 +37,11 @@ const Login = () => {
   const toggleView = () => {
     setViewPass(!viewPass);
   };
+
   function onSubmit(values) {
     const { email, password } = values;
     setFailed("");
-    return fetch("/api/login", {
+    return fetch("/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,38 +52,44 @@ const Login = () => {
       }),
     })
       .then((r) => {
-        setValue([{ email: "" }, { password: "" }]);
+        setValue([{ email: "" }, { password: "" }, { passwordConf: "" }]);
         toast({
-          title: "Ou konekte",
-          description: "Nap voye ou nan dachbòd la",
+          title: "Kont la kreye",
+          description: "kounye a ou ka konekte",
           status: "success",
           duration: 2000,
           isClosable: true,
         });
-        // setTimeout(() => {
-        //   Router.push("/dashboard");
-        // }, 2000);
+        // TODO ADD EMAIL VERIFICATION and update messager for that
+        setTimeout(() => {
+          Router.push("/login");
+        }, 2000);
       })
       .catch(async (error) => {
         const data = await error.response.json();
         const { message } = data;
-
-        if (message === "User not found") {
-          setFailed(
-            "Pa gen kont ak imèl sa. Verifye imèl la oubyen kreye yon kont"
-          );
-        } else if (message === "Auth Failed") {
-          setFailed("Tanpri verifye imèl ak modepas ou");
-        } else {
-          setFailed("Nou pa rive konekte ou, tanpri eseye ankò");
+        const exist = message === "An account with that email already exist.";
+        const existMesssage =
+          "Kont sa egziste deja. Si ou bliye modepas ou ale nan konekte pou risèt li";
+        if (exist) {
+          setFailed(existMesssage);
         }
+        toast({
+          title: "Kont la kreye",
+          description: exist
+            ? existMesssage
+            : "Tanpri verifye entènèt ou e eseye ankò. Si erè kontinye ekri yon adminstratè",
+          status: "error",
+          duration: 4000,
+          isClosable: true,
+        });
       });
   }
 
   return (
     <>
       <Head>
-        <title>Konekte</title>
+        <title>Kreye yon kont</title>
       </Head>
 
       <AuthLayout>
@@ -85,13 +100,11 @@ const Login = () => {
           maxWidth={{ md: "500px", lg: "400px" }}
         >
           <Heading as="h1" size="xl" paddingY="4" textAlign="center">
-            Konekte.
+            Kreye yon kont.
           </Heading>
-          {failed && (
-            <Text fontSize="sm" fontWeight="bold" color="red.900">
-              {failed}
-            </Text>
-          )}
+
+          {failed && <Text color="red.900">{failed}</Text>}
+
           <Box as="form" mt="2" onSubmit={handleSubmit(onSubmit)}>
             <InputGroup width="full" marginBottom={{ base: "4", md: "8" }}>
               <InputLeftElement>
@@ -100,9 +113,9 @@ const Login = () => {
               <Input
                 type="email"
                 name="email"
-                autoComplete="email"
                 aria-label="Email address"
                 placeholder="Email"
+                autoComplete="email"
                 isRequired
                 size="md"
                 ref={register({
@@ -114,7 +127,6 @@ const Login = () => {
                 })}
               />
             </InputGroup>
-
             <InputGroup width="full" marginBottom={{ base: "4", md: "8" }}>
               <InputLeftElement>
                 <Icon name="lock" color="gray.300" />
@@ -122,7 +134,7 @@ const Login = () => {
               <Input
                 type={viewPass ? "text" : "password"}
                 name="password"
-                autoComplete="current-password"
+                autoComplete="new-password"
                 aria-label="Modepas"
                 placeholder="Modepas"
                 isRequired
@@ -136,7 +148,39 @@ const Login = () => {
                 </Button>
               </InputRightElement>
             </InputGroup>
-
+            <InputGroup>
+              <InputLeftElement>
+                <Icon name="lock" color="gray.300" />
+              </InputLeftElement>
+              <Input
+                type={viewPass ? "text" : "password"}
+                name="passwordConf"
+                autoComplete="new-password"
+                isRequired
+                aria-label="Konfime modepas"
+                placeholder="Konfime modepas"
+                ref={register({
+                  required: true,
+                  validate: (value) => value === getValues().password,
+                })}
+              />
+              <InputRightElement width="4.5rem">
+                <Button h="1.75rem" size="sm" onClick={toggleView}>
+                  {viewPass ? "Hide" : "Show"}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+            {errors.passwordConf ? (
+              <Box
+                color="red"
+                fontSize="sm"
+                marginBottom={{ base: "4", md: "8" }}
+              >
+                Modepas yo pa dwe diferan.
+              </Box>
+            ) : (
+              <Box marginBottom={{ base: "4", md: "8" }} />
+            )}
             <Button
               type="submit"
               width="full"
@@ -145,28 +189,22 @@ const Login = () => {
               my="4"
               isDisabled={formState.isSubmitting}
             >
-              Konekte
+              Kreye kont
             </Button>
           </Box>
 
           <Flex direction="row" justifyContent="space-between" as="p" my="4">
-            <NextLink href="/reset-password" passHref>
-              <Link color="#3182C2">Mwen bliye modepas la</Link>
+            <NextLink href="/login" passHref>
+              <Link color="#3182C2">Konekte</Link>
             </NextLink>
-            <NextLink href="/signup" passHref>
-              <Link color="#3182C2">Kreye kont</Link>
-            </NextLink>
-          </Flex>
-
-          <Text textAlign="left" width="100%">
             <NextLink href="/" passHref>
               <Link color="#3182C2">Akèy</Link>
             </NextLink>
-          </Text>
+          </Flex>
         </Box>
       </AuthLayout>
     </>
   );
 };
 
-export default Login;
+export default Signup;

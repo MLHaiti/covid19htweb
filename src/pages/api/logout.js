@@ -1,13 +1,22 @@
 import cookie from "cookie";
-import { SECRET_COOKIE, COOKIE_OPTION } from "utils/auth";
+import nextConnect from "next-connect";
 
-// TODO make sure to send bad request for other types
-export default async (req, res) => {
+const onNoMatch = async (req, res) => {
   // TODO make sure to do invalidation where there is a db state
 
-  res.setHeader(
-    "Set-Cookie",
-    cookie.serialize(SECRET_COOKIE, "", COOKIE_OPTION)
-  );
-  return res.json({ ok: true });
+  const cookieSerialized = cookie.serialize("token", "", {
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    maxAge: -1,
+    httpOnly: true,
+    path: "/",
+  });
+
+  res.setHeader("Set-Cookie", cookieSerialized);
+  return res.json({ message: "Logout Successful" });
 };
+
+// We will logout the user whatever the method used
+const handler = nextConnect({ onNoMatch });
+
+export default handler;

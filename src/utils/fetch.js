@@ -15,13 +15,13 @@ import _fetch from "isomorphic-unfetch";
 //   }
 // }
 
-export const fetch = (url, options = {}) =>
+const fetch = (url, options = {}) =>
   _fetch(url, {
     credentials: "include",
     ...options,
   })
     .then(checkStatus)
-    .then((r) => r.json());
+    .then((r) => r.json()); // When response if ok we will have a json format
 
 export function checkStatus(response) {
   console.log("the response");
@@ -33,3 +33,5 @@ export function checkStatus(response) {
   error.response = response;
   return Promise.reject(error);
 }
+
+export default fetch;

@@ -1,6 +1,10 @@
 {
   "version": 2,
   "alias": "codvid19ht",
+  "env":{
+    "MONGODB_URI": "@mongodb_uri",
+    "MONGODB_DB_NAME": "@mongodb_db_name"
+  },
   "builds": [
     {
       "src": "next.config.js",

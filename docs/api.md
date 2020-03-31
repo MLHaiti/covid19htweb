@@ -4,8 +4,11 @@
 Simple reponse schema.
 
 {
-  ok: true // false
-  error:
+  ok // true // false
+  error_code
+  data
+  message
+
 }
 
 
@@ -25,3 +28,5 @@ Simple reponse schema.
 
 -- user signout
 1 - clean the cookie
+
+

@@ -40,3 +40,10 @@ Le site web tourne dans le ReactJS ecosystème plus précisément du NextJS et d
 - Dynamically set base url in project based on environment
 - Configure haring for each platform
 - Need Website to try find fresh information first or completely remove PWA. It seems it needs to do cache fall back
+- Add email verification before letting people create account
+
+
+## Desired features
+- Add phone number signup (service not free - unless we cannot we local operators to send verification code)
+
+

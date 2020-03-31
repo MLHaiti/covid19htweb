@@ -1,18 +1,15 @@
 import nextConnect from "next-connect";
 import isEmail from "validator/lib/isEmail";
-import { databaseOnly } from "middlewares/middleware";
 import bcrypt from "bcryptjs";
-import { jwtSigner, serializeCookie } from "utils/auth-helpers";
 import User from "models/user";
-
-const jwtSecret = process.env.JWT_SECRET;
+import { databaseOnly } from "middlewares/middleware";
 
 const handler = nextConnect();
 
 handler.use(databaseOnly);
 
-handler.post(async (req, res) => {
-  const { password } = req.body;
+handler.patch(async (req, res) => {
+  const { password, newPassword } = req.body;
   const { email } = req.body;
   if (!isEmail(email)) {
     res.status(400).send("The email you entered is invalid.");
@@ -39,17 +36,20 @@ handler.post(async (req, res) => {
   }
 
   const match = bcrypt.compareSync(password, user.password);
-  if (match) {
-    const token = jwtSigner(
-      { userId: user._id, email: user.email, roles: user.roles },
-      jwtSecret
-    );
-    // sent the cookie
-    const cookieSerialized = serializeCookie("token", token);
-    res.setHeader("Set-Cookie", cookieSerialized);
-    return res.json({ token });
+  if (!match) {
+    return res.status(401).json({ message: "Invalid credentials" });
   }
-  return res.status(401).json({ message: "Auth Failed" });
+
+  // now we can update the password
+  const hashedPassword = await bcrypt.hash(newPassword, 14);
+  user.password = hashedPassword;
+
+  try {
+    await user.save();
+    return res.json({ message: "Password updated" });
+  } catch (error) {
+    return res.status(500).json({ message: "Password update failed" });
+  }
 });
 
 export default handler;

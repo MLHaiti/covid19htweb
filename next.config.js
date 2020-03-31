@@ -10,6 +10,12 @@ const nextConfig = {
     // Fixes npm packages that depend on `fs` module
     config.resolve.alias.components = path.join(__dirname, "./src/components");
     config.resolve.alias.utils = path.join(__dirname, "./src/utils");
+    config.resolve.alias.middlewares = path.join(
+      __dirname,
+      "./src/middlewares"
+    );
+    config.resolve.alias.models = path.join(__dirname, "./src/models");
+
     config.node = {
       fs: "empty",
     };
