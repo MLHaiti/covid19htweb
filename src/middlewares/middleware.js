@@ -1,10 +1,10 @@
 import nextConnect from "next-connect";
-import { withMongoose } from "./database";
+import mongoose from "./database";
 import session from "./session";
 
-export const databaseOnly = nextConnect().use(withMongoose);
+export const databaseOnly = nextConnect().use(mongoose);
 
 // Default middleware is for protected routes
-const protectedRoutes = nextConnect().use(session).use(withMongoose);
+const protectedRoutes = nextConnect().use(session).use(mongoose);
 
 export default protectedRoutes;

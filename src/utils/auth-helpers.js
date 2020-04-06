@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import cookie from "cookie";
 
-export const expirationTime = 60 * 60 * 3; // 3 hourse * 24 * 3; // 60 * 60 = 1h
+export const expirationTime = 60 * 60 * 3; // 3 hours * 24 * 3; // 60 * 60 = 1h
 
 export const serializeCookie = (name, data) => {
   const serialized = cookie.serialize(name, data, {
