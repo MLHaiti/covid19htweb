@@ -1,9 +1,8 @@
 // import { MongoClient } from "mongodb";
 import mongoose from "mongoose";
 
-export async function withMongoose(req, res, next) {
+export default async function (req, res, next) {
   if (mongoose.connections[0].readyState) {
-    req.mongoose = mongoose;
     next();
     return;
   }

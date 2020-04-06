@@ -1,11 +1,10 @@
 import nextConnect from "next-connect";
-import session from "middlewares/session";
+import services from "middlewares/middleware";
 import User from "models/user";
-// import { getUser } from "utils/api-helpers";
 
 const handler = nextConnect();
 
-handler.use(session);
+handler.use(services);
 
 /**
  * We will use this route to send public information to the front-end about the user
@@ -26,10 +25,6 @@ handler.get(async (req, res) => {
     }
   } catch (error) {
     return res.status(500).json({ message: "Server Error" });
-  }
-
-  if (!user) {
-    return res.status(404).json({ message: "User not found" });
   }
 
   res.json({ user: user.info });
