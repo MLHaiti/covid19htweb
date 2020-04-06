@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import NextLink from "next/link";
 import { useForm } from "react-hook-form";
 import {
@@ -25,6 +25,7 @@ const Login = () => {
   const [viewPass, setViewPass] = useState(false);
   const [failed, setFailed] = useState("");
   const toast = useToast();
+  const { query } = useRouter();
 
   const toggleView = () => {
     setViewPass(!viewPass);
@@ -51,9 +52,13 @@ const Login = () => {
           duration: 2000,
           isClosable: true,
         });
-        // setTimeout(() => {
-        //   Router.push("/dashboard");
-        // }, 2000);
+        setTimeout(() => {
+          if (query.redirect) {
+            Router.push(query.redirect);
+          } else {
+            Router.push("/dashboard");
+          }
+        }, 2000);
       })
       .catch(async (error) => {
         const data = await error.response.json();
@@ -144,6 +149,8 @@ const Login = () => {
               variant="solid"
               my="4"
               isDisabled={formState.isSubmitting}
+              isLoading={formState.isSubmitting}
+              loadingText="Tan yon moman."
             >
               Konekte
             </Button>

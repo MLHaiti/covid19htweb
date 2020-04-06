@@ -10,7 +10,7 @@ const handler = nextConnect();
 
 handler.use(databaseOnly); // only the database
 
-handler.get(async (req, res) => {
+handler.post(async (req, res) => {
   const { password } = req.body;
   const { email } = req.body; // normalizeEmail(req.body.email);
 

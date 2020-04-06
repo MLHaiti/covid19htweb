@@ -12,3 +12,9 @@ export const Ol = ({ children, ...rest }) => (
     {children}
   </Box>
 );
+
+export const FullDiv = ({ children, ...props }) => (
+  <Box width="full" {...props}>
+    {children}
+  </Box>
+);
