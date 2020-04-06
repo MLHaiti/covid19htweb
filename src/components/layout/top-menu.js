@@ -6,8 +6,8 @@ import { Box, Flex, CloseButton, Link } from "@chakra-ui/core";
 export const TopMenu = ({ close }) => (
   <Flex marginY="4" direction="column">
     {/* <Button variantColor="teal" variant="link" fontSize="md" onClick={close}>
-        Fèmen
-      </Button> */}
+      Fèmen
+    </Button> */}
     <MenuItem text="Akèy" to="/" />
     <MenuItem text="Kiyès nou ye?" to="/about" />
     <MenuItem text="Kontribye" to="/contribute" />

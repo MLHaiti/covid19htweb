@@ -1,29 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
-// import Router from "next/router";
 import dynamic from "next/dynamic";
 import { FullPageLoading } from "components";
 
 const ClientOnly = dynamic({
   loader: () => import("components/dashboard"),
   loading: FullPageLoading,
-  ssr: false,
+  // ssr: false,
 });
 
-// function redirectOnNotAuthenticated() {}
-
 export default () => {
-  const [ready, setReady] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // check if the user is authenticated
-    // if not redirect to login
-    setTimeout(() => {
-      setReady(true);
-    }, 5000);
+    setMounted(true);
   }, []);
 
-  if (!ready) {
+  if (!mounted) {
     return (
       <>
         <Head>

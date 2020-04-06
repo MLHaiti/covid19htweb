@@ -1,9 +1,11 @@
 import React from "react";
 import Router from "next/router";
+import { SWRConfig } from "swr";
 // import { DefaultSeo } from "next-seo";
 import { ThemeProvider, CSSReset, ColorModeProvider } from "@chakra-ui/core";
-import { initGA, logPageView } from "../utils/analytics";
+import { initGA, logPageView } from "utils/analytics";
 // import SEO from "../seo";
+import fetch from "utils/fetch";
 import { theme } from "../setup/theme";
 
 import "../styles/index.css";
@@ -23,14 +25,15 @@ class MyApp extends React.Component {
   }
 
   render() {
-    const { Component } = this.props;
+    const { Component, pageProps } = this.props;
     return (
       <>
         {/* <DefaultSeo {...SEO} /> when ready */}
+
         <ThemeProvider theme={theme}>
           <CSSReset />
           <ColorModeProvider>
-            <Component />
+            <Component {...pageProps} />
           </ColorModeProvider>
         </ThemeProvider>
       </>

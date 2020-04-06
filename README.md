@@ -44,6 +44,8 @@ Le site web tourne dans le ReactJS ecosystème plus précisément du NextJS et d
 
 
 ## Desired features
+- Send transactional emails ()
 - Add phone number signup (service not free - unless we cannot we local operators to send verification code)
+- Automatically logout the user after 3 failed attemps to change the password.
 
 

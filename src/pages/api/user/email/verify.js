@@ -1,5 +1,20 @@
+import jwt from "jsonwebtoken";
+
+const jwtSecret = process.env.JWT_SECRET;
+const expirationTime = 60 * 60 * 24; // 24 hours
+
 export default (req, res) => {
-  res.end("ok");
+  const { email } = req.user;
+
+  const code = 42;
+
+  const data = { email, code };
+
+  const token = jwt.sign(data, jwtSecret, {
+    expiresIn: expirationTime, // 50 minutes
+  });
+
+  res.json({ token });
 };
 // import crypto from "crypto";
 // import sgMail from "@sendgrid/mail";

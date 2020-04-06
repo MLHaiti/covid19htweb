@@ -7,9 +7,16 @@ import cookie from "cookie";
 
 const jwtSecret = process.env.JWT_SECRET;
 
-export default function (req, res, next) {
-  const cookies = cookie.parse(req.headers.cookie ?? "");
-  const { token } = cookies;
+const clearCookieToken = cookie.serialize("token", "", {
+  sameSite: "lax",
+  secure: process.env.NODE_ENV === "production",
+  maxAge: -1,
+  httpOnly: true,
+  path: "/",
+});
+
+export default async function (req, res, next) {
+  const { token } = req.cookies;
 
   if (token) {
     try {
@@ -17,31 +24,17 @@ export default function (req, res, next) {
       req.user = decoded;
       next();
     } catch (error) {
-      const cookieSerialized = cookie.serialize("token", "", {
-        sameSite: "lax",
-        secure: process.env.NODE_ENV === "production",
-        maxAge: -1,
-        httpOnly: true,
-        path: "/",
-      });
-
-      res.setHeader("Set-Cookie", cookieSerialized);
+      req.completed = true;
+      res.setHeader("Set-Cookie", clearCookieToken);
       return res
         .status(401)
         .json({ message: "Access is forbidden. You must authenticate" });
     }
+  } else {
+    req.completed = true;
+    res.setHeader("Set-Cookie", clearCookieToken);
+    return res
+      .status(403)
+      .json({ message: "Access is forbidden. You must authenticate" });
   }
-
-  const cookieSerialized = cookie.serialize("token", "", {
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    maxAge: -1,
-    httpOnly: true,
-    path: "/",
-  });
-
-  res.setHeader("Set-Cookie", cookieSerialized);
-  return res
-    .status(403)
-    .json({ message: "Access is forbidden. You must authenticate" });
 }

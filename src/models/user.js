@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import isEmail from "validator/lib/isEmail";
 import isUrl from "is-url";
 
-const UserSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema(
         validator: (value) => isEmail(value),
         message: (props) => `${props.value} is not a valid email!`,
       },
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
     },
     emailVerified: {
       type: Boolean,
@@ -37,6 +41,7 @@ const UserSchema = new mongoose.Schema(
       },
     },
     signature: { type: String, trim: true },
+    roles: [String],
     createdAt: Number,
     updatedAt: Number,
   },
@@ -46,4 +51,31 @@ const UserSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+userSchema.virtual("info").get(function () {
+  const json = this.toJSON();
+  delete json.password;
+
+  return json;
+});
+
+userSchema.virtual("publicInfo").get(function () {
+  const {
+    username,
+    firstName,
+    lastName,
+    signature,
+    pictureUrl,
+    roles,
+  } = this.info;
+
+  return {
+    username,
+    firstName,
+    lastName,
+    signature,
+    pictureUrl,
+    roles,
+  };
+});
+
+export default mongoose.models.User || mongoose.model("User", userSchema);
