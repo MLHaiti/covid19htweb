@@ -15,12 +15,12 @@ handler.post(async (req, res) => {
   const { password } = req.body;
   const { email } = req.body;
   if (!isEmail(email)) {
-    res.status(400).send("The email you entered is invalid.");
+    res.status(400).json({ message: "Missing field(s)" });
     return;
   }
 
   if (!password) {
-    res.status(400).send("Missing field(s)");
+    res.status(400).json({ message: "Missing field(s)" });
     return;
   }
 

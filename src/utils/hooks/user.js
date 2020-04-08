@@ -1,33 +1,23 @@
-import { useEffect, useState } from "react";
 import Router from "next/router";
 import fetch from "utils/fetch";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 
-export const useEnforceAuth = (redirectTo = "/dashboard") => {
-  const [user, setUser] = useState({});
-  useEffect(() => {
-    fetch("/api/me")
-      .then((r) => {
-        setUser(r.user);
-      })
-      .catch(() => {
-        Router.push(`/login?&redirect=${redirectTo}`);
-      });
-  }, []); // How often should this be running
-  return user;
-};
-
-export const useUser = (redirectTo = "/dashboard") => {
-  const { data, error } = useSWR("/api/me", fetch);
+/**
+ *
+ * @param {String} redirectTo Need to pass like ?&redirect=/dashboard
+ */
+export const useUser = (redirectTo = "") => {
+  const { data, error } = useSWR("/api/user/me", fetch);
 
   if (error) {
-    Router.push(`/login?&redirect=${redirectTo}`);
+    Router.push(`/login${redirectTo}`);
     return;
   }
   if (!data) {
     return null;
   }
   if (data) {
+    mutate("userState", { ...data.user }, false);
     return data.user;
   }
 };

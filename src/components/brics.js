@@ -18,3 +18,6 @@ export const FullDiv = ({ children, ...props }) => (
     {children}
   </Box>
 );
+
+export const AugmentChildren = ({ children, ...props }) =>
+  React.Children.map(children, (el) => React.cloneElement(el, props));

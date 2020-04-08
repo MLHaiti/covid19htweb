@@ -1,11 +1,9 @@
 import React from "react";
 import Router from "next/router";
-import { SWRConfig } from "swr";
 // import { DefaultSeo } from "next-seo";
 import { ThemeProvider, CSSReset, ColorModeProvider } from "@chakra-ui/core";
 import { initGA, logPageView } from "utils/analytics";
 // import SEO from "../seo";
-import fetch from "utils/fetch";
 import { theme } from "../setup/theme";
 
 import "../styles/index.css";

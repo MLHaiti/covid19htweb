@@ -7,6 +7,9 @@ import { PublicProfileView } from "./profile";
 
 import { Section, SectionContent } from "../common/section";
 
+import Wrapper from "../common/wrapper";
+import SecondaryMenu from "../common/secondary-menu";
+
 /**
  * email
  * change password
@@ -28,20 +31,11 @@ export default function SettingView({ user }) {
   return (
     <>
       <PageTitle title="Paramèt" />
-      <Box width="full" height="8" />
+      {/* <Box width="full" height="8" /> */}
+      <SecondaryMenu />
 
-      <Flex
-        direction={{
-          base: "column",
-          lg: "row",
-        }}
-      >
-        <Box
-          width={{
-            base: "full",
-            lg: "50%",
-          }}
-        >
+      <Wrapper>
+        <>
           <Section name="Enfomasyon pesonel">
             <SectionContent label="Imèl">
               <Box>
@@ -74,16 +68,10 @@ export default function SettingView({ user }) {
           </Section>
 
           <ChangePasswordView />
-        </Box>
-        <Box
-          width={{
-            base: "full",
-            lg: "50%",
-          }}
-        >
-          <PublicProfileView user={user} />
-        </Box>
-      </Flex>
+        </>
+
+        <PublicProfileView user={user} />
+      </Wrapper>
     </>
   );
 }
