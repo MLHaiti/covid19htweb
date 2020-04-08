@@ -39,7 +39,7 @@ export function ChangePasswordView() {
   function onSubmit(values) {
     const { password, newPassword } = values;
 
-    return fetch("/api/password/update", {
+    return fetch("/api/user/password/update", {
       method: "PATCH",
       body: JSON.stringify({
         newPassword,

@@ -40,7 +40,7 @@ export const PublicProfileView = ({ user = {} }) => {
   const [failed, setFailed] = useState("");
 
   function onSubmit(values) {
-    fetch("/api/me", {
+    fetch("/api/user/me", {
       method: "PATCH",
       body: JSON.stringify({
         data: { ...values },

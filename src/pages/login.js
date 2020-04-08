@@ -33,7 +33,7 @@ const Login = () => {
   function onSubmit(values) {
     const { email, password } = values;
     setFailed("");
-    return fetch("/api/login", {
+    return fetch("/api/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,9 +54,11 @@ const Login = () => {
         });
         setTimeout(() => {
           if (query.redirect) {
-            Router.push(query.redirect);
+            window.location = query.redirect;
+            // Router.push(query.redirect);
           } else {
-            Router.push("/dashboard");
+            window.location = "/dashboard";
+            // Router.push("/dashboard");
           }
         }, 2000);
       })
@@ -73,6 +75,13 @@ const Login = () => {
         } else {
           setFailed("Nou pa rive konekte ou, tanpri eseye ankò");
         }
+        toast({
+          title: "Eseye ankò",
+          description: "",
+          status: "error",
+          duration: 1000,
+          isClosable: true,
+        });
       });
   }
 

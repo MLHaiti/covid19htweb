@@ -2,6 +2,7 @@ import React from "react";
 import T from "prop-types";
 import { Box, Button } from "@chakra-ui/core";
 import useSWR, { mutate } from "swr";
+import { managerRoleCheck } from "utils/user-helpers";
 import { sideMenuStore } from "./store";
 
 const SingleItem = ({ text, id, onClick }) => {
@@ -57,10 +58,23 @@ SingleItem.defaultProps = {
   onClick: () => {},
 };
 
-export const SideMenu = () => (
-  <Box paddingY={{ base: 8 }}>
-    <SingleItem text="Paramèt" id="setting" />
-    <SingleItem text="Atik" id="article" />
-    <SingleItem text="Bilten" id="bulletin" />
-  </Box>
-);
+export const SideMenu = () => {
+  const { data: user } = useSWR("userState", {
+    initialData: {},
+  });
+
+  const showManagement = user.isAdmin || managerRoleCheck(user.roles || []) > 0;
+
+  console.log(showManagement, user.isAdmin, managerRoleCheck(user.roles || []));
+
+  return (
+    <Box paddingY={{ base: 8 }}>
+      <SingleItem text="Paramèt" id="setting" />
+      <SingleItem text="Atik" id="article" />
+      {/* <SingleItem text="Bilten" id="bulletin" /> */}
+      {showManagement ? (
+        <SingleItem text="Jestyon itilizatè" id="management" />
+      ) : null}
+    </Box>
+  );
+};
