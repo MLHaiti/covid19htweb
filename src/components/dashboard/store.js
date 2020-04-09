@@ -1,1 +1,1 @@
-export const sideMenuStore = { active: "management" };
+export const sideMenuStore = { active: "setting" };

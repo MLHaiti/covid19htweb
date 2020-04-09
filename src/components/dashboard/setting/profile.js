@@ -20,7 +20,9 @@ import {
   FormSectionContent,
 } from "../common/section";
 
-export const PublicProfileView = ({ user = {} }) => {
+export const PublicProfileView = () => {
+  const { data: user } = useSWR("userState", { initialData: {} });
+
   const {
     handleSubmit,
     errors,

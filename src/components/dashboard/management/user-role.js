@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import {
   Box,
   FormHelperText,
@@ -13,7 +13,6 @@ import {
   Tag,
   TagIcon,
   TagLabel,
-  TagCloseButton,
   useToast,
 } from "@chakra-ui/core";
 import useSWR from "swr";
@@ -21,18 +20,11 @@ import fetch from "utils/fetch";
 import { FullDiv, AugmentChildren } from "components/brics";
 import {
   managerialRoles,
-  userRoleSupervision,
-  userRoles,
   userRolesKeyText,
   findTransferableRoles,
 } from "utils/user-helpers";
 import { TOAST_ERROR, TOAST_SUCCESS } from "utils/misc-helpers";
-import {
-  Section,
-  SectionContent,
-  FormSection,
-  FormSectionContent,
-} from "../common/section";
+import { Section, SectionContent } from "../common/section";
 
 export const ManageUserRole = () => {
   console.log("go");
@@ -122,7 +114,6 @@ const UserRole = ({
 }) => {
   const toast = useToast();
   const [isSaving, setIsSaving] = useState(false);
-  const [showUpdate, setShowUpdate] = useState(false);
   const [roles, setRoles] = useState(activeRoles || []);
 
   const { data: currentUser } = useSWR("userState");
@@ -202,7 +193,10 @@ const UserRole = ({
                       }}
                     >
                       <TagLabel>{userRolesKeyText[el]}</TagLabel>
-                      <TagCloseButton />
+                      {/* <TagCloseButton /> */}
+                      {managerialRoles.includes(el) ? (
+                        <TagIcon icon="star" size="12px" />
+                      ) : null}
                     </Tag>
                   ))}
                 </FullDiv>
@@ -230,8 +224,11 @@ const UserRole = ({
                         }
                       }}
                     >
-                      <TagIcon icon="add" size="12px" />
+                      {/* <TagIcon icon="add" size="12px" /> */}
                       <TagLabel>{userRolesKeyText[el]}</TagLabel>
+                      {managerialRoles.includes(el) ? (
+                        <TagIcon icon="star" size="12px" />
+                      ) : null}
                     </Tag>
                   ))}
                 </FullDiv>
