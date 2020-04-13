@@ -33,8 +33,6 @@ export default () => {
 
   const { active } = data;
 
-  console.log(active);
-
   if (!user) {
     return (
       <>

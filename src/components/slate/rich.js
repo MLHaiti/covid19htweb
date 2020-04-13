@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
+import { Box } from "@chakra-ui/core";
 import { Editable, withReact, Slate } from "slate-react";
 import { createEditor } from "slate";
 import { withHistory } from "slate-history";
@@ -18,7 +19,7 @@ import { initialValue } from "./test-value";
 
 const flow = flowRight([withLinks, withImages, withHistory, withReact]);
 
-const RichTextExample = () => {
+const RichEditor = () => {
   const [value, setValue] = useState(initialValue);
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
@@ -33,7 +34,9 @@ const RichTextExample = () => {
   return (
     <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
       <Toolbar>
-        <BlockButton format="heading-one" />
+        <Box>dfs</Box>
+        <Box>dfs</Box>
+        {/* <BlockButton format="heading-one" />
         <BlockButton format="heading-two" />
 
         <MarkButton format="bold" />
@@ -46,7 +49,7 @@ const RichTextExample = () => {
 
         <LinkButton />
         <ImageButton />
-        <MarkButton format="mark" />
+        <MarkButton format="mark" /> */}
         {/* <MarkButton format="code" /> */}
       </Toolbar>
       <Editable
@@ -61,4 +64,4 @@ const RichTextExample = () => {
   );
 };
 
-export default RichTextExample;
+export default RichEditor;

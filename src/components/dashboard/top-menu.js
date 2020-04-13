@@ -9,7 +9,7 @@ export const TopMenu = ({ onMenuClick, isOpen }) => (
     height="50px"
     width="100%"
     position="fixed"
-    zIndex={1401}
+    zIndex={1200}
     flexDirection="row"
     justifyContent="flex-start"
     alignItems="center"

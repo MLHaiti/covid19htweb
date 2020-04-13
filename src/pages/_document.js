@@ -34,7 +34,9 @@ class MyDocument extends Document {
             sizes="180x180"
             href="/icons/apple-touch-icon.png"
           />
-          <link rel="manifest" href="/manifest.json" />
+          {process.env.NODE_ENV === "development" ? null : (
+            <link rel="manifest" href="/manifest.json" />
+          )}
           <link rel="shortcut icon" href="/icons/favicon.ico" />
           <link
             href="https://fonts.googleapis.com/css2?family=Muli&family=Sen&display=swap"
