@@ -2,13 +2,15 @@
 /** @jsx jsx */
 import React from "react";
 import { css, jsx } from "@emotion/core";
+import { Box } from "@chakra-ui/core";
 import {Node} from 'slate'
 import { useSelected, useFocused } from "slate-react";
 
 import {H1,H2, H3, H4, Ol, Ul, Li, Quote, Alink, Paragraph} from 'components/article'
+import {Image} from  'components/article/media'
 
 export const element = (props) => {
-  const { attributes, children, element } = props;
+  const { attributes={}, children, element } = props;
   // console.log(element);
   switch (element.type) {
 
@@ -42,7 +44,7 @@ export const element = (props) => {
   }
 };
 
-export const leaf = ({ attributes, children, leaf }) => {
+export const leaf = ({ attributes={}, children, leaf }) => {
   let _children = children;
   if (leaf.bold) {
     _children = <strong>{children}</strong>;
@@ -60,29 +62,21 @@ export const leaf = ({ attributes, children, leaf }) => {
   }
 
   if (leaf.mark) {
-    _children = <mark>{children}</mark>;
+    _children = <mark >{children}</mark>;
   }
   return <span {...attributes}>{_children}</span>;
 };
 
 export const ImageElement = ({ attributes, children, element }) => {
-  const selected = useSelected();
-  const focused = useFocused();
   return (
-    <div {...attributes}>
+    <Box width="full" {...attributes}> 
       <div contentEditable={false}>
-        <img
-          src={element.url}
-          alt="an article image"
-          css={css`
-            display: block;
-            max-width: 100%;
-            max-height: 20em;
-            box-shadow: ${selected && focused ? "0 0 0 3px #B4D5FF" : "none"};
-          `}
+      <Image 
+        src={element.url}          
         />
+
       </div>
       {children}
-    </div>
+    </Box>
   );
 };

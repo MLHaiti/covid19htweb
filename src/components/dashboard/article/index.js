@@ -16,10 +16,10 @@ import {
   DrawerCloseButton,
 } from "@chakra-ui/core";
 import { FullDiv } from "components/brics";
-import { ArticleEditor } from "./article-editor";
+import { ArticleCompositor } from "./article-compositor";
 
 export default function ArticleView() {
-  const { isOpen, onOpen, onClose } = useDisclosure(true);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [content, setContent] = useState({});
   const [ready, setReady] = useState(false);
@@ -42,7 +42,6 @@ export default function ArticleView() {
             kreye yon atik
           </Button>
 
-          {content ? <ArticleEditor params={content} /> : null}
           {length === 0 ? <Text fontSize="lg">Ou poko gen atik</Text> : null}
         </Box>
       </FullDiv>
@@ -58,7 +57,7 @@ export default function ArticleView() {
         {/* <DrawerOverlay /> */}
         <DrawerContent>
           <DrawerBody>
-            <ArticleEditor params={content} onClose={onClose} />
+            <ArticleCompositor params={content} onClose={onClose} />
           </DrawerBody>
         </DrawerContent>
       </Drawer>

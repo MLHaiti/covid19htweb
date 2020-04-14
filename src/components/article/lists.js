@@ -1,20 +1,36 @@
 import React from "react";
-import { Box } from "@chakra-ui/core";
+import { Box, List, ListItem } from "@chakra-ui/core";
 
 export const Ul = React.forwardRef(({ children, ...props }, ref) => (
-  <Box as="ul" {...props} ref={ref}>
+  <List
+    as="ul"
+    styleType="disc"
+    paddingLeft="4"
+    marginTop="2"
+    marginBottom="4"
+    {...props}
+    ref={ref}
+  >
     {children}
-  </Box>
+  </List>
 ));
 
 export const Ol = React.forwardRef(({ children, ...props }, ref) => (
-  <Box as="ol" {...props} ref={ref}>
+  <List
+    as="ol"
+    styleType="decimal"
+    paddingLeft="4"
+    marginTop="2"
+    marginBottom="4"
+    {...props}
+    ref={ref}
+  >
     {children}
-  </Box>
+  </List>
 ));
 
 export const Li = React.forwardRef(({ children, ...props }, ref) => (
-  <Box as="li" {...props} ref={ref}>
+  <ListItem {...props} ref={ref}>
     {children}
-  </Box>
+  </ListItem>
 ));

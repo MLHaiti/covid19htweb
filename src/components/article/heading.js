@@ -8,19 +8,19 @@ export const H1 = React.forwardRef(({ children, ...props }, ref) => (
 ));
 
 export const H2 = React.forwardRef(({ children, ...props }, ref) => (
-  <Heading as="h2" {...props} ref={ref}>
+  <Heading as="h2" size="lg" {...props} ref={ref}>
     {children}
   </Heading>
 ));
 
 export const H3 = React.forwardRef(({ children, ...props }, ref) => (
-  <Heading as="h3" {...props} ref={ref}>
+  <Heading as="h3" size="md" {...props} ref={ref}>
     {children}
   </Heading>
 ));
 
 export const H4 = React.forwardRef(({ children, ...props }, ref) => (
-  <Heading as="h4" {...props} ref={ref}>
+  <Heading as="h4" size="sm" {...props} ref={ref}>
     {children}
   </Heading>
 ));

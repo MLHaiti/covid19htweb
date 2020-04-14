@@ -46,6 +46,13 @@ export const Editor = ({ title = "", content = initialValue }) => {
   const renderElement = useCallback(element, []);
   const renderLeaf = useCallback(leaf, []);
 
+  React.useEffect(() => {
+    const _value = window.localStorage.getItem("draftArticle");
+    if (_value) {
+      setValue(JSON.parse(_value));
+    }
+  }, []);
+
   const handleTitle = (event) => setTitle(event.target.value);
 
   return (
@@ -98,7 +105,11 @@ export const Editor = ({ title = "", content = initialValue }) => {
           onClick={() => {
             setIsLoading(true);
             setTimeout(() => {
-              console.log(value);
+              window.localStorage.setItem(
+                "draftArticle",
+                JSON.stringify(value)
+              );
+
               setIsLoading(false);
             }, 3000);
           }}
