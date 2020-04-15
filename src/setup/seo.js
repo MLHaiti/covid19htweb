@@ -8,7 +8,7 @@ export default {
   canonical: "https://covid19htweb.now.sh/",
   openGraph: {
     type: "website",
-    locale: "ht",
+    locale: "ht_HT",
     url: "https://covid19htweb.now.sh/",
     site_name: "Covid19 Haiti",
   },
