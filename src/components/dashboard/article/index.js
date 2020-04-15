@@ -19,7 +19,7 @@ import { FullDiv } from "components/brics";
 import { ArticleCompositor } from "./article-compositor";
 
 export default function ArticleView() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure(true);
 
   const [content, setContent] = useState({});
   const [ready, setReady] = useState(false);
@@ -36,6 +36,7 @@ export default function ArticleView() {
           <Button
             onClick={() => {
               setContent({ content: [] });
+              onOpen();
             }}
             variantColor="green"
           >
@@ -57,7 +58,7 @@ export default function ArticleView() {
         {/* <DrawerOverlay /> */}
         <DrawerContent>
           <DrawerBody>
-            <ArticleCompositor params={content} onClose={onClose} />
+            <ArticleCompositor article={content} onClose={onClose} />
           </DrawerBody>
         </DrawerContent>
       </Drawer>

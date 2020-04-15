@@ -3,14 +3,7 @@ import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 import { withHistory } from "slate-history";
 import flowRight from "lodash.flowright";
-import {
-  Box,
-  Button,
-  Input,
-  FormControl,
-  FormLabel,
-  FormHelperText,
-} from "@chakra-ui/core";
+import { Box } from "@chakra-ui/core";
 import { handleHotKeys } from "./helpers";
 import { withLinks } from "./withLinks";
 import { withImages } from "./withImages";
@@ -27,9 +20,7 @@ const flow = flowRight([
   withReact,
 ]);
 
-export const Editor = ({ title = "", content = initialValue }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [_title, setTitle] = useState(title);
+export const Editor = ({ contentRef, content = initialValue }) => {
   const [value, setValue] = useState(content);
 
   const editor = useMemo(() => flow(createEditor()), []);
@@ -53,80 +44,39 @@ export const Editor = ({ title = "", content = initialValue }) => {
     }
   }, []);
 
-  const handleTitle = (event) => setTitle(event.target.value);
-
   return (
-    <Box maxWidth="732px">
-      <form>
-        <FormControl marginBottom="8">
-          <FormLabel htmlFor="title">Tik atik la</FormLabel>
-          <Input
-            id="title"
-            aria-describedby="title-helper-text"
-            placeholder="Tik atik la"
-            size="md"
-            value={_title}
-            onChange={handleTitle}
-          />
-          <FormHelperText id="title-helper-text">
-            Genbe tit la kout epi eksplisit
-          </FormHelperText>
-        </FormControl>
-      </form>
-      <Box
-        border="1px"
-        borderColor="gray.400"
-        borderRadius="md"
-        backgroundColor="#fbfbfb"
+    <Box
+      border="1px"
+      borderColor="gray.400"
+      borderRadius="md"
+      backgroundColor="#fbfbfb"
+    >
+      <Slate
+        editor={editor}
+        value={value}
+        onChange={(_value) => {
+          if (contentRef) {
+            contentRef.current = _value;
+          }
+          setValue(_value);
+        }}
       >
-        <Slate
-          editor={editor}
-          value={value}
-          onChange={(value) => setValue(value)}
-        >
-          <Toolbar />
-          <Box width="full" padding="4">
-            <Editable
-              readOnly={isLoading}
-              spellCheck
-              autoFocus
-              onKeyDown={KeysHandler}
-              renderElement={renderElement}
-              renderLeaf={renderLeaf}
-              placeholder="Ekri Atik ou a la."
-            />
-          </Box>
-        </Slate>
-      </Box>
-      <Box marginY="8">
-        <Button
-          loadingText="Nap anrejistre li"
-          isLoading={isLoading}
-          onClick={() => {
-            setIsLoading(true);
-            setTimeout(() => {
-              window.localStorage.setItem(
-                "draftArticle",
-                JSON.stringify(value)
-              );
-
-              setIsLoading(false);
-            }, 3000);
-          }}
-          variantColor="green"
-        >
-          Anrejistre
-        </Button>
-      </Box>
+        <Toolbar />
+        <Box width="full" padding="4">
+          <Editable
+            // readOnly={isLoading}
+            spellCheck
+            autoFocus
+            onKeyDown={KeysHandler}
+            renderElement={renderElement}
+            renderLeaf={renderLeaf}
+            placeholder="Ekri Atik ou a la."
+          />
+        </Box>
+      </Slate>
     </Box>
   );
 };
-
-// const initialValue = [
-//   {
-//     children: [{ text: "" }],
-//   },
-// ];
 
 const initialValue = [
   {
