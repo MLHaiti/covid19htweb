@@ -2,55 +2,56 @@
 
 ## Objectifs
 
-- Fournir des informations crédibles à la population dans son ensemble.
-- 
+- Fournir des informations de santé de qualité à la population haïtienne.
+
 
 ## Limitations
 
-Du point de vue de l'interface notre objectif est de rester juste dans le minimun nécessaire. Limitant le plus que possible les library utilisés afin de minimizer le poids en terme de megabyte et également en terme de Phone-CPU/Memory. Nous avons en tête l'utisateur avec le un smartphone non (LG-iPhone-Samsung) dans le coin le plus reculé du pays.
+
 
 
 ## Tech Stack
 
-Le site web tourne dans le ReactJS ecosystème plus précisément du NextJS et déployé sur Zeit. Nous utlisons des API call pour extraire l'information de nos bases de données et créer des pages statiques à la volée lorsque cela est optimale.
+Fait à NextJS et déployé sur Zeit avec Atlas MongoDB base de données
 
 
 
 ## Notes
 
-- Projè an use yarn
-- Asire ou ke ou fè `yarn lint:fix` avan ou comit
-- Asire ke `yarn build` fini san erè avan ou fè yon pull request
-- Projè sa ap fè nan tan lib tanpri pran pasyans
+- Le projet utilise `yarn` comme gestionnaire de paquets et  `eslint` pour le code formattage.
+- Assurez-vous d'exécuter la commande  `yarn lint:fix` avant votre commit
+- Assurez-vous que la commande `yarn build` fini sans erreur avant de faire un `pull request`
+- Le projet est mise-à-jour durant le temps libre donc un peu de patience.
 
 
 ## Discussion
-- Slack link (most discussion)
+- SLACK LINK WILL BE PROVIDED
 
 
 
 ## Development version
 
-- You can check the latest online version here [https://covid19htweb.now.sh/](https://covid19htweb.now.sh/)
+- Consultez la dernière version en ligne à l'addresse [https://covid19htweb.now.sh/](https://covid19htweb.now.sh/)
 
 
 ## Important TODO List before public launch
+
 
 ### Needed
 
 - Configure next seo
 - Dynamically set base url in project based on environment
-- Configure post sharing for the different platform (at least whatsapp/facebook)
-
+- Configure post sharing for the different platform (at least WhatsApp/Facebook)
+- Upload assets
 
 
 ### Wish list
 - Add email verification before letting people create account (We will do that manually for now)
-- Move PWA feature to pwa branch (need more research)
+- PWA capability
 
 ## Desired features
 - Send transactional emails ()
 - Add phone number signup (service not free - unless we cannot we local operators to send verification code)
-- Automatically logout the user after 3 failed attemps to change the password.
+- Automatically logout the user after 3 failed attempts to change the password.
 
 
