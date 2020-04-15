@@ -1,9 +1,9 @@
 import React from "react";
 import Router from "next/router";
-// import { DefaultSeo } from "next-seo";
+import { DefaultSeo } from "next-seo";
 import { ThemeProvider, CSSReset, ColorModeProvider } from "@chakra-ui/core";
 import { initGA, logPageView } from "utils/analytics";
-// import SEO from "../seo";
+import SEO from "../setup/seo";
 import { theme } from "../setup/theme";
 
 import "../styles/index.css";
@@ -26,8 +26,7 @@ class MyApp extends React.Component {
     const { Component, pageProps } = this.props;
     return (
       <>
-        {/* <DefaultSeo {...SEO} /> when ready */}
-
+        <DefaultSeo {...SEO} />
         <ThemeProvider theme={theme}>
           <CSSReset />
           <ColorModeProvider>
