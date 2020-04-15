@@ -51,8 +51,7 @@ const Header = () => {
 
   return (
     <>
-      <Box display="none" width="full" height="16" />
-
+      <Box display={sticky ? "block" : "none"} width="full" height="16" />
       <Flex
         as="header"
         height="16"
