@@ -65,8 +65,6 @@ export const SideMenu = () => {
 
   const showManagement = user.isAdmin || managerRoleCheck(user.roles || []) > 0;
 
-  console.log(showManagement, user.isAdmin, managerRoleCheck(user.roles || []));
-
   return (
     <Box paddingY={{ base: 8 }}>
       <SingleItem text="Paramèt" id="setting" />

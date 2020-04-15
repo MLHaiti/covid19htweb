@@ -1,13 +1,10 @@
 import React from "react";
 import T from "prop-types";
-import { Box } from "@chakra-ui/core";
 
-export default function SecondaryMenu({ children }) {
-  return (
-    <Box width="full" height="8">
-      {children}
-    </Box>
-  );
+import { FullDiv } from "components/brics";
+
+export default function SecondaryMenu({ data, children }) {
+  return <FullDiv height="8">{children}</FullDiv>;
 }
 
 SecondaryMenu.propTypes = {

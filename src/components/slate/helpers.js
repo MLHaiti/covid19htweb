@@ -127,31 +127,6 @@ export const withImages = (editor) => {
     }
   };
 
-  // editor.insertData = data => {
-  //   const text = data.getData("text/plain");
-  //   const { files } = data;
-
-  //   if (files && files.length > 0) {
-  //     files.forEach(file => {
-  //       const reader = new FileReader();
-  //       const [mime] = file.type.split("/");
-
-  //       if (mime === "image") {
-  //         reader.addEventListener("load", () => {
-  //           const url = reader.result;
-  //           insertImage(editor, url);
-  //         });
-
-  //         reader.readAsDataURL(file);
-  //       }
-  //     });
-  //   } else if (isImageUrl(text)) {
-  //     insertImage(editor, text);
-  //   } else {
-  //     insertData(data);
-  //   }
-  // };
-
   return editor;
 };
 
@@ -198,17 +173,18 @@ export const withLinks = (editor) => {
   editor.isInline = (element) =>
     element.type === "link" ? true : isInline(element);
 
-  // editor.insertText = text => {
-  //   if (text && isUrl(text)) {
-  //     wrapLink(editor, text);
-  //   } else {
-  //     insertText(text);
-  //   }
-  // };
+  editor.insertText = (text) => {
+    console.log("insert", text);
+    if (text && isUrl(text)) {
+      wrapLink(editor, text);
+    } else {
+      insertText(text);
+    }
+  };
 
   editor.insertData = (data) => {
     const text = data.getData("text/plain");
-
+    console.log("insert", data);
     if (text && isUrl(text)) {
       wrapLink(editor, text);
     } else {

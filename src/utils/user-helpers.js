@@ -35,6 +35,7 @@ export const findTransferableRoles = (isAdmin = false, roles = []) => {
     userRoles.forEach((el) => {
       transferableRoles.push(el.key);
     });
+    return [...new Set(transferableRoles)];
   }
 
   if (Array.isArray(roles)) {
@@ -45,7 +46,6 @@ export const findTransferableRoles = (isAdmin = false, roles = []) => {
         });
       }
     });
+    return [...new Set(transferableRoles)];
   }
-
-  return [...new Set(transferableRoles)]; // unique value
 };

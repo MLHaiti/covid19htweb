@@ -36,12 +36,17 @@ Le site web tourne dans le ReactJS ecosystème plus précisément du NextJS et d
 
 ## Important TODO List before public launch
 
+### Needed
+
 - Configure next seo
 - Dynamically set base url in project based on environment
-- Configure haring for each platform
-- Need Website to try find fresh information first or completely remove PWA. It seems it needs to do cache fall back
-- Add email verification before letting people create account
+- Configure post sharing for the different platform (at least whatsapp/facebook)
 
+
+
+### Wish list
+- Add email verification before letting people create account (We will do that manually for now)
+- Move PWA feature to pwa branch (need more research)
 
 ## Desired features
 - Send transactional emails ()

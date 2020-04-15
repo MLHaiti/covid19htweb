@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FullPageLoading } from "components";
 import {
   Box,
@@ -11,7 +11,7 @@ import {
   // DrawerCloseButton,
 } from "@chakra-ui/core";
 import { useUser } from "utils/hooks";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 
 import { PageTitle } from "utils/page-title";
 import { TopMenu } from "./top-menu";
@@ -32,8 +32,6 @@ export default () => {
   const user = useUser();
 
   const { active } = data;
-
-  console.log(active);
 
   if (!user) {
     return (
