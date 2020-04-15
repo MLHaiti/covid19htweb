@@ -2,7 +2,7 @@
   "name": "codvid19ht",
   "version": "0.0.1",
   "private": true,
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "clean": "rm -rf .next && rm -f public/sw* && rm -f public/workbox*",
     "dev": "next dev",
