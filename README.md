@@ -43,6 +43,7 @@ Fait à NextJS et déployé sur Zeit avec Atlas MongoDB base de données
 - Dynamically set base url in project based on environment
 - Configure post sharing for the different platform (at least WhatsApp/Facebook)
 - Upload assets
+- Better SEO configuration
 
 
 ### Wish list
