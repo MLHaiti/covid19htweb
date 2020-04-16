@@ -3,23 +3,29 @@ import NextLink from "next/link";
 import Head from "next/head";
 import {
   Layout,
+  PanelSection,
   SectionWithCollapse,
   LinkToPage,
   CollapseSection,
   CollapseContent,
   Divider,
 } from "components";
-import { Link, Flex } from "@chakra-ui/core";
+import { Link, Flex, Text, Box, Heading } from "@chakra-ui/core";
 
 import fiveActions from "../data/five-actions";
 
 export default () => (
   <>
     <Head>
-      <title>Santepam</title>
+      <title>Codvid19ht</title>
     </Head>
     <Layout>
-      <br />
+      <Box width="full" marginTop="24">
+        <Heading as="h1" size="2xl" textAlign="center">
+          Coming soon. Stay tight.
+        </Heading>
+      </Box>
+      {/* <br />
       <SectionWithCollapse title="5 konpòtman pou sove lavi ou">
         {fiveActions.map((el) => (
           <CollapseContent key={el.title} title={el.title}>
@@ -58,7 +64,7 @@ export default () => (
         text="Konsèy pou chak moun"
         href="/konsey-pou-chak-moun"
         headingProps={{ marginTop: "12" }}
-      />
+      /> */}
     </Layout>
   </>
 );

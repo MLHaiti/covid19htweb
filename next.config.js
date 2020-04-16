@@ -2,7 +2,7 @@ require("dotenv").config();
 const withPlugins = require("next-compose-plugins");
 const withImages = require("next-images");
 const path = require("path");
-const withPWA = require("next-pwa");
+// const withPWA = require("next-pwa");
 
 const nextConfig = {
   reactStrictMode: true,
@@ -39,7 +39,7 @@ const exportByEnv =
       )
     : withPlugins(
         [
-          [withPWA, { pwa: { dest: "public" } }],
+          // [withPWA, { pwa: { dest: "public" } }],
           [withImages, { exclude: path.resolve(__dirname, "src/assets/svg") }],
         ],
         nextConfig

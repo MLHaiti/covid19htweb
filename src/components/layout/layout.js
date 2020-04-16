@@ -1,18 +1,33 @@
 import React from "react";
-import { Box } from "@chakra-ui/core";
-import { Hero } from "components/hero";
-import Header from "./header";
-import Footer from "./footer";
+import Link from "next/link";
+import T from "prop-types";
+import { Box, Heading, Text } from "@chakra-ui/core";
 
-import { maxWidth } from "./common";
+import { Main } from "./main";
+import { Footer } from "./footer";
+import { Header } from "./header";
+import { TopRightMenu } from "./top-right-menu";
 
-export const Layout = ({ children, hideHero = false, ...rest }) => (
+export const Layout = ({ children }) => (
   <>
-    <Header />
-    <Box marginX="auto" maxWidth={maxWidth} paddingX="16px" {...rest}>
-      {hideHero ? null : <Hero />}
-      {children}
-    </Box>
-    <Footer />
+    <Header>
+      <Link href="/">
+        <a>
+          <Heading as="h3" size="md">
+            Codvid19ht
+          </Heading>
+        </a>
+      </Link>
+
+      <TopRightMenu />
+    </Header>
+    <Main>{children}</Main>
+    <Footer>
+      <Text fontSize="sm">Une société en bonne santé.</Text>
+    </Footer>
   </>
 );
+
+Layout.propTypes = {
+  children: T.node.isRequired,
+};

@@ -7,5 +7,11 @@
 - http://thecodebarbarian.com/tag/mongodb.html
 
 
-## Dev.to 
+## Useful
 - https://dev.to/n8tb1t/tracking-scroll-position-with-react-hooks-3bbj
+_ https://ahrefs.com/blog/open-graph-meta-tags/
+
+- https://tobiasahlin.com/blog/how-to-animate-box-shadow/
+- https://css-tricks.com/snippets/css/css-box-shadow/
+- https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
+- https://picsum.photos
