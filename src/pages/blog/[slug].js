@@ -1,93 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import { Box, Flex, Heading, Image, Text } from "@chakra-ui/core";
 
 import { PageTitle } from "utils/page-title";
 
+import { Layout } from "components";
+
 const BlogPost = () => (
-  <>
+  <Layout>
     <PageTitle title="blog" />
-    <>
-      <Header />
-      <Main />
-      <Footer />
-    </>
-  </>
-);
-
-const Header = () => {
-  const [pageYOffset, setPageYOffset] = useState(0);
-
-  const top = useRef(0);
-
-  const handleScroll = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const nextValue = window.pageYOffset;
-
-    setPageYOffset((value) => {
-      let _top = top.current + (value - nextValue);
-      if (_top > 0) {
-        _top = 0;
-      }
-
-      if (_top < -64) {
-        _top = -64;
-      }
-
-      top.current = _top;
-      return nextValue;
-    });
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const sticky = pageYOffset !== 0;
-
-  return (
-    <>
-      <Box display={sticky ? "block" : "none"} width="full" height="16" />
-      <Flex
-        as="header"
-        height="16"
-        paddingY="6"
-        width="full"
-        justifyContent="space-between"
-        transition=" .2s ease"
-        backgroundColor="hsla(0,0%,100%,.98)"
-        alignItems="center"
-        boxShadow={sticky ? "none" : "0 0 48px rgba(50,76,128,.05)"}
-        position={sticky ? "fixed" : "static"}
-        zIndex={sticky ? 10 : "auto"}
-        top={top.current}
-      >
-        <Box>
-          <Box>Sante pam</Box>
-        </Box>
-        <Box>Menu</Box>
-      </Flex>
-    </>
-  );
-};
-
-const Main = () => (
-  <Box
-    as="main"
-    marginX="auto"
-    maxWidth={{
-      base: "540px",
-      lg: "1080px",
-    }}
-    marginBottom={{
-      base: "65px",
-      lg: "95px",
-    }}
-  >
     <Box
       marginTop="12"
       marginX="auto"
@@ -103,21 +23,27 @@ const Main = () => (
           lg: "36px",
         }}
       >
-        9 Powerful Writing Apps for Any Type of Writing Project
+        Lorem Ipsum
       </Heading>
 
       <Image
         rounded="md"
         objectFit="cover"
-        src="https://contenthub-static.grammarly.com/blog/wp-content/uploads/2017/07/Free-Writing-Apps_version_1-2-760x400.jpg"
+        src="https://via.placeholder.com/760x400.png?text=Lave+Men+Ou"
+        // src="https://contenthub-static.grammarly.com/blog/wp-content/uploads/2017/07/Free-Writing-Apps_version_1-2-760x400.jpg"
         marginBottom="8"
       />
 
       <Text marginBottom="4" fontSize="lg" lineHeight="tall">
-        Even if you’re a pen-on-paper writer for the first draft, you’ll have to
-        translate your writing to a digital format at some point in the process.
-        Here are a few writing apps to help you, broken out by the type of
-        project you might be working on.
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five
+        centuries, but also the leap into electronic typesetting, remaining
+        essentially unchanged. It was popularised in the 1960s with the release
+        of Letraset sheets containing Lorem Ipsum passages, and more recently
+        with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.
       </Text>
 
       <Heading
@@ -129,13 +55,28 @@ const Main = () => (
           lg: "24px",
         }}
       >
-        3 Great Online Writing Apps
+        Where does it come from?
       </Heading>
       <Text marginBottom="4" fontSize="lg" lineHeight="tall">
-        Grammarly is a writing assistant. We provide clear, constructive writing
-        suggestions that work where you work, enabling better understanding
-        between people. Our products can help you with grammar, spelling,
-        punctuation, conciseness, clarity, readability, and more.
+        Contrary to popular belief, Lorem Ipsum is not simply random text. It
+        has roots in a piece of classical Latin literature from 45 BC, making it
+        over 2000 years old. Richard McClintock, a Latin professor at
+        Hampden-Sydney College in Virginia, looked up one of the more obscure
+        Latin words, consectetur, from a Lorem Ipsum passage, and going through
+        the cites of the word in classical literature, discovered the
+        undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33
+        of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by
+        Cicero, written in 45 BC. This book is a treatise on the theory of
+        ethics, very popular during the Renaissance. The first line of Lorem
+        Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section
+        1.10.32.
+      </Text>
+      <Text marginBottom="4" fontSize="lg" lineHeight="tall">
+        The standard chunk of Lorem Ipsum used since the 1500s is reproduced
+        below for those interested. Sections 1.10.32 and 1.10.33 from "de
+        Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact
+        original form, accompanied by English versions from the 1914 translation
+        by H. Rackham.
       </Text>
       <Heading
         as="h2"
@@ -146,24 +87,22 @@ const Main = () => (
           lg: "24px",
         }}
       >
-        2 Helpful Blogging Apps
+        Why do we use it?
       </Heading>
 
       <Text marginBottom="4" fontSize="lg" lineHeight="tall">
-        WordPress.com helps you start a blog or build a website in seconds
-        without any technical knowledge. The software it’s based on (confusingly
-        named WordPress.org), powers 32% of the Internet, so it’s a very popular
-        blogging platform. With WordPress, you can create custom blogs easily
-        and share them on a custom website of your choosing.
+        t is a long established fact that a reader will be distracted by the
+        readable content of a page when looking at its layout. The point of
+        using Lorem Ipsum is that it has a more-or-less normal distribution of
+        letters, as opposed to using 'Content here, content here', making it
+        look like readable English. Many desktop publishing packages and web
+        page editors now use Lorem Ipsum as their default model text, and a
+        search for 'lorem ipsum' will uncover many web sites still in their
+        infancy. Various versions have evolved over the years, sometimes by
+        accident, sometimes on purpose (injected humour and the like).
       </Text>
     </Box>
-  </Box>
-);
-
-const Footer = () => (
-  <Box as="footer">
-    <Box>Footer</Box>
-  </Box>
+  </Layout>
 );
 
 export default BlogPost;

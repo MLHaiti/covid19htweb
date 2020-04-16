@@ -1,12 +1,15 @@
 import React from "react";
+import T from "prop-types";
 import { Box } from "@chakra-ui/core";
-import { maxWidth } from "./common";
 
-export default () => (
-  <Box>
-    <Box marginX="auto" maxWidth={maxWidth} mt="8" paddingX="16px" paddingY="4">
-      <Box fontSize="sm">Santepam. Une initiatice citoyenne.</Box>
-      <Box fontSize="xs">© 2020 Santepam. All rights reserved.</Box>
+export const Footer = ({ children }) => (
+  <Box as="footer" marginX="auto" maxWidth="1080px">
+    <Box width="full" marginTop="10" paddingX="4">
+      {children}
     </Box>
   </Box>
 );
+
+Footer.propTypes = {
+  children: T.node.isRequired,
+};

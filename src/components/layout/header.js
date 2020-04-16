@@ -1,59 +1,66 @@
-import React from "react";
-import NextLink from "next/link";
-import {
-  Box,
-  Flex,
-  Button,
-  useDisclosure,
-  Drawer,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerHeader,
-  DrawerBody,
-  CloseButton,
-  Heading,
-} from "@chakra-ui/core";
+import React, { useEffect, useState, useRef } from "react";
+import T from "prop-types";
+import { Box, Flex } from "@chakra-ui/core";
 
-import { maxWidth } from "./common";
-import { TopMenu } from "./top-menu";
+export const Header = ({ children }) => {
+  const [pageYOffset, setPageYOffset] = useState(0);
 
-export default () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const top = useRef(0);
+
+  const handleScroll = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const nextValue = window.pageYOffset;
+
+    setPageYOffset((value) => {
+      let _top = top.current + (value - nextValue);
+      if (_top > 0) {
+        _top = 0;
+      }
+
+      if (_top < -64) {
+        _top = -64;
+      }
+
+      top.current = _top;
+      return nextValue;
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const sticky = pageYOffset !== 0;
 
   return (
     <>
+      <Box display={sticky ? "block" : "none"} width="full" height="16" />
       <Flex
-        flexDirection="row"
-        marginX="auto"
-        maxWidth={maxWidth}
+        as="header"
         justifyContent="space-between"
-        width="100%"
-        padding="16px"
-        // fontFamily="mono"
+        alignItems="center"
+        height="16"
+        paddingY="6"
+        paddingX="4"
+        width="full"
+        transition=" .2s ease"
+        backgroundColor="hsla(0,0%,100%,.98)"
+        boxShadow={sticky ? "none" : "0 0 48px rgba(50,76,128,.05)"}
+        position={sticky ? "fixed" : "static"}
+        zIndex={sticky ? 10 : "auto"}
+        top={top.current}
       >
-        <Heading fontFamily="mono" as="h3" fontWeight="normal">
-          <NextLink href="/">
-            <a>Santepam</a>
-          </NextLink>
-        </Heading>
-        <Button variantColor="teal" size="lg" variant="link" onClick={onOpen}>
-          Meni
-        </Button>
+        {children}
       </Flex>
-      <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader>
-            <Flex direction="row">
-              <Box marginRight="auto">Meni Prensipal</Box>
-              <CloseButton onClick={onClose} />
-            </Flex>
-          </DrawerHeader>
-          <DrawerBody>
-            <TopMenu close={onClose} />
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
     </>
   );
+};
+
+Header.propTypes = {
+  children: T.node.isRequired,
 };

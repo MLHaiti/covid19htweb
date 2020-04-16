@@ -1,13 +1,10 @@
 import React from "react";
 import T from "prop-types";
 import NextLink from "next/link";
-import { Box, Flex, CloseButton, Link } from "@chakra-ui/core";
+import { Flex, CloseButton, Link } from "@chakra-ui/core";
 
 export const TopMenu = ({ close }) => (
   <Flex marginY="4" direction="column">
-    {/* <Button variantColor="teal" variant="link" fontSize="md" onClick={close}>
-      Fèmen
-    </Button> */}
     <MenuItem text="Akèy" to="/" />
     <MenuItem text="Kiyès nou ye?" to="/about" />
     <MenuItem text="Kontribye" to="/contribute" />
