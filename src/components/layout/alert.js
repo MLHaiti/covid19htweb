@@ -33,3 +33,29 @@ NeutralAlert.defaultProps = {
   text: "",
   children: null,
 };
+
+export const RedAlert1 = ({ text, children }) => (
+  <Box paddingX="4">
+    <Box
+      paddingX="3"
+      paddingY="2"
+      backgroundColor="rgb(255, 240, 203)"
+      border="1px"
+      borderColor="rgb(255, 204, 121)"
+      borderRadius="sm"
+    >
+      {text ? <Text fontSize="sm">{text}</Text> : null}
+      {children ? { children } : null}
+    </Box>
+  </Box>
+);
+
+RedAlert1.propTypes = {
+  text: T.string,
+  children: T.node,
+};
+
+RedAlert1.defaultProps = {
+  text: "",
+  children: null,
+};

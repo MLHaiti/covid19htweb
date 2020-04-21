@@ -15,3 +15,6 @@ _ https://ahrefs.com/blog/open-graph-meta-tags/
 - https://css-tricks.com/snippets/css/css-box-shadow/
 - https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
 - https://picsum.photos
+- http://cybernext.in/
+- https://css-tricks.com/snippets/css/ribbon/
+- https://csstriggers.com/
