@@ -1,37 +1,23 @@
 # codvid19ht
-Chaque personne informée qui informe est une victoire dans ce combat.
+
+Chaque personne a son role et peut agir pour informer et sauver des vies.
 
 ---
 
-À l'heure actuelle une grande partie de la population est sceptique et parfois même hostique lorsqu'il s'agit de la maladie. Nous sommes témoins d'un nombre grandissant de messagers catégoriquement faux circulant sur les réseaux sociaux contribuant d'avantage à une situation déjà critique.
+Cette pandémie mondiale que nous vivons aujourd'hui met à nue les faiblesses de notre système de santé et également la méfiance de la population par à rapport à cet élément nouveau. 
+
+Mais la réalité reste ce qu'elle est et le coût en vie humaine peut-être énorme si nous n'agissons pas tous en tant que nation. 
 
 
-Aussi il est important de contrer ces comportements/messages négatifs par d'autres messages scientifiquement corrects et ansi sauver le plus de vie que possible. 
+
+## Objectif
+
+Notre objectif est d'informer la population haïtienne afin que chaque personne puisse prendre les mesures pour se protéger et protéger sa famille et son entourage . Chaque personne correctement informée est un pas décisif vers la victoire.
 
 
+## User Experience
 
-## Objectifs
-
-- Fournir des informations de santé de qualité à la population haïtienne.
-- Pousser la population à se protéger.
-- Minimiser la stigmatisation des malades.
-
-
-## Sujets 
-
-Différentes idées pour la création de contenu
-
-- Contenu visant à sensibiliser la population et prévenir les stigmatisations. 
-- Définition et explication de différents termes
-- Conseils spécifiques; ex: conseils pour les chauffeurs, conseils pour les boutiques de quartier, conseils pour parents, conseils pour les femmes enceintes,
-- Conseils d'hygiène.
-- etc. 
-
-Notre objectif n'est pas de publier une vingtaine d'articles par jour mais plutôt d'avoir du contenu de qualité susceptible d'informer et contribuer aux changements de comportements positifs des lecteurs.
-
-
-Nous espérons une belle coopération entre personnels de santé volontaire et les développeurs pour créer la meilleure plateforme possible.
-
+Nous avons en tête de donner à nos utilisateurs la meilleure performance possible. Pour cela il est important que toujours garder en tête le coût et la qualité du service data et le fait qu'une grande partie de la population n'a pas de smartphone dernier cri.
 
 
 
@@ -41,8 +27,3 @@ Nous espérons une belle coopération entre personnels de santé volontaire et l
 - Consultez la dernière version en ligne à l'addresse [https://covid19htweb.now.sh/](https://covid19htweb.now.sh/)
 
 
----
-
-### Quid après le covid19ht
-
-Une fois cette situation de crise passé ce site web continuer à servir la population haitienne à travers des conseils sanitaies suivant le modèle de rédaction qui a été établi.
