@@ -1,67 +1,68 @@
 import React, { useState } from "react";
 import {
   Box,
-  Heading,
-  Text,
+  Stack,
   Button,
-  Flex,
-  CloseButton,
   useDisclosure,
   Drawer,
   DrawerContent,
-  DrawerHeader,
-  DrawerFooter,
   DrawerBody,
   DrawerOverlay,
-  DrawerCloseButton,
 } from "@chakra-ui/core";
-import { FullDiv } from "components/brics";
+import { mutate } from "swr";
 import { ArticleCompositor } from "./article-compositor";
 
 export default function ArticleView() {
-  const { isOpen, onOpen, onClose } = useDisclosure(true);
+  const [mode, setMode] = useState("active"); // passive or active
+  const { isOpen, onOpen, onClose } = useDisclosure(false);
 
   const [content, setContent] = useState({});
-  const [ready, setReady] = useState(false);
-  const length = 0;
+
+  const onScroll = () => {
+    const { scrollTop } = document.getElementById("drawer-article-editor-body");
+    mutate("articleEditorScrollTop", { scrollTop });
+  };
 
   return (
-    <>
-      <FullDiv mt="4">
-        <Box marginY="12" marginX="auto" maxWidth="732px">
-          <Heading as="h1" fontSize="2xl" marginBottom="8">
-            Lis Atik yo.
-          </Heading>
-
-          <Button
-            onClick={() => {
-              setContent({ content: [] });
-              onOpen();
-            }}
-            variantColor="green"
-          >
-            kreye yon atik
-          </Button>
-
-          {length === 0 ? <Text fontSize="lg">Ou poko gen atik</Text> : null}
-        </Box>
-      </FullDiv>
-      <Drawer
-        isOpen={isOpen}
-        placement="bottom"
-        onClose={onClose}
-        isFullHeight
-        closeOnEsc={false}
-        scrollBehavior="inside"
-        // finalFocusRef={btnRef}
-      >
-        {/* <DrawerOverlay /> */}
-        <DrawerContent>
-          <DrawerBody>
-            <ArticleCompositor article={content} onClose={onClose} />
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
-    </>
+    <Box
+      width="full"
+      mt="4"
+      paddingX="4"
+      display="flex"
+      flexDirection="row"
+      justifyContent="space-between"
+    >
+      <Stack width="500px" border="1px" borderColor="gray.200" padding="4">
+        <Button
+          onClick={() => {
+            setContent({ content: [] });
+            onOpen();
+          }}
+          variantColor="green"
+          isDisabled={isOpen}
+        >
+          kreye yon atik
+        </Button>
+      </Stack>
+      {mode === "active" ? (
+        <Drawer
+          onClose={onClose}
+          isOpen={isOpen}
+          size="70%"
+          scrollBehavior="inside"
+          id="article-editor"
+          // closeOnEsc={false}
+        >
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerBody onScroll={onScroll}>
+              <Stack width="710px" borderRadius="md">
+                <ArticleCompositor article={content} onClose={onClose} />
+              </Stack>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
+      ) : null}
+    </Box>
   );
 }
