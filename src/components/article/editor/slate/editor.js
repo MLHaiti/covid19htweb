@@ -62,7 +62,7 @@ export const Editor = ({ contentRef, content = initialValue }) => {
         }}
       >
         <Toolbar />
-        <Box width="full" padding="4">
+        <Box width="full" padding="4" className="me">
           <Editable
             // readOnly={isLoading}
             spellCheck
