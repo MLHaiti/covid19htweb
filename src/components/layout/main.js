@@ -8,7 +8,7 @@ export const Main = ({ children }) => (
     marginX="auto"
     maxWidth={{
       base: "540px",
-      lg: "1080px",
+      lg: "1112px",
     }}
     marginBottom={{
       base: "65px",

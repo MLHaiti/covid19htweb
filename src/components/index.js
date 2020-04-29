@@ -12,3 +12,4 @@ export * from "./page-divider";
 export * from "./loading";
 
 export * from "./auth";
+export * from "./load-more";
