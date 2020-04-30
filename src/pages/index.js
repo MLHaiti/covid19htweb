@@ -1,70 +1,42 @@
-import React from "react";
-import NextLink from "next/link";
+import React, { useCallback } from "react";
 import Head from "next/head";
-import {
-  Layout,
-  PanelSection,
-  SectionWithCollapse,
-  LinkToPage,
-  CollapseSection,
-  CollapseContent,
-  Divider,
-} from "components";
-import { Link, Flex, Text, Box, Heading } from "@chakra-ui/core";
+import { Layout, LoadMore } from "components";
+import { v4 as uuidv4 } from "uuid";
+import { Box, Heading } from "@chakra-ui/core";
+import { ArticlePreview } from "components/layout";
 
-import fiveActions from "../data/five-actions";
+const getOne = () => ({
+  id: uuidv4(),
+  title: "Lorem ipsum dolor sit amet, adipiscing elit, sed.",
+  coverUrl: "/images/338x178.png",
+  abstract:
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, ",
+  author: "Emmanuel Fleurine",
+});
 
-export default () => (
-  <>
-    <Head>
-      <title>Codvid19ht</title>
-    </Head>
-    <Layout>
-      <Box width="full" marginTop="24">
-        <Heading as="h1" size="2xl" textAlign="center">
-          Coming soon. Stay tight.
-        </Heading>
-      </Box>
-      {/* <br />
-      <SectionWithCollapse title="5 konpòtman pou sove lavi ou">
-        {fiveActions.map((el) => (
-          <CollapseContent key={el.title} title={el.title}>
-            {el.value}
-          </CollapseContent>
-        ))}
-        <Divider />
-        <Flex direction="row" justifyContent="flex-end">
-          <NextLink href="/poukisa-prekosyon-sa-yo" passHref>
-            <Link
-              paddingX="16px"
-              fontWeight="bold"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              height="40px"
-              borderRadius="md"
-              borderWidth="1px"
-              borderColor="black"
-              borderStyle="solid"
-              _hover={{ textDecoration: "none" }}
-            >
-              Pou kisa tout bagay sa yo?
-            </Link>
-          </NextLink>
-        </Flex>
-      </SectionWithCollapse>
+const dummies = Array.from(Array(4), () => getOne());
 
-      <LinkToPage
-        text="Kisa ki nouvo korona viris la"
-        href="/kisa-ki-nouvo-korona-viris-la"
-        headingProps={{ marginTop: "12" }}
-      />
+export default () => {
+  const renderer = useCallback((data) => <ArticlePreview {...data} />, []);
+  const loadMore = useCallback(() => Array.from(Array(10), () => getOne()), []);
 
-      <LinkToPage
-        text="Konsèy pou chak moun"
-        href="/konsey-pou-chak-moun"
-        headingProps={{ marginTop: "12" }}
-      /> */}
-    </Layout>
-  </>
-);
+  return (
+    <>
+      <Head>
+        <title>Codvid19ht</title>
+      </Head>
+      <Layout>
+        <Box width="full" marginTop="24">
+          <Heading as="h1" size="2xl" textAlign="center">
+            Coming soon. Stay tight.
+          </Heading>
+        </Box>
+        <LoadMore
+          initialData={dummies}
+          renderer={renderer}
+          loadMore={loadMore}
+        />
+      </Layout>
+    </>
+  );
+};

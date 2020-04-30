@@ -19,6 +19,7 @@ import {
   FormSection,
   FormSectionContent,
 } from "../common/section";
+import { ProfileAvatar } from "./avatar";
 
 export const PublicProfileView = () => {
   const { data: user } = useSWR("userState", { initialData: {} });
@@ -59,10 +60,11 @@ export const PublicProfileView = () => {
 
   return (
     <>
-      <FormSection onSubmit={handleSubmit(onSubmit)} name="Piblik profil">
+      <FormSection onSubmit={handleSubmit(onSubmit)} name="Profil piblik">
         {/* <SectionContent label="Foto">
           <Box>TO BE IMPLEMENTED</Box>
         </SectionContent> */}
+        <ProfileAvatar />
         <SectionContent label="Prenon" labelWidth={80}>
           <FullDiv>
             <Input

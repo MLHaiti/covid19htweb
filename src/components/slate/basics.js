@@ -19,7 +19,7 @@ export const Button = React.forwardRef(
             : active
             ? "black"
             : "#ccc"};
-        `
+        `,
       ]}
     />
   )
@@ -28,7 +28,7 @@ export const Button = React.forwardRef(
 export const EditorValue = React.forwardRef(
   ({ className, value, ...props }, ref) => {
     const textLines = value.document.nodes
-      .map(node => node.text)
+      .map((node) => node.text)
       .toArray()
       .join("\n");
     return (
@@ -39,7 +39,7 @@ export const EditorValue = React.forwardRef(
           className,
           css`
             margin: 30px -20px 0;
-          `
+          `,
         ]}
       >
         <div
@@ -81,7 +81,7 @@ export const Icon = React.forwardRef(({ className, ...props }, ref) => (
       css`
         font-size: 18px;
         vertical-align: text-bottom;
-      `
+      `,
     ]}
   />
 ));
@@ -98,7 +98,7 @@ export const Instruction = React.forwardRef(({ className, ...props }, ref) => (
         padding: 10px 20px;
         font-size: 14px;
         background: #f8f8e8;
-      `
+      `,
     ]}
   />
 ));
@@ -116,7 +116,7 @@ export const Menu = React.forwardRef(({ className, ...props }, ref) => (
         & > * + * {
           margin-left: 15px;
         }
-      `
+      `,
     ]}
   />
 ));
@@ -138,7 +138,7 @@ export const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
         margin-bottom: 20px;
         display: flex;
         flex-direction: row;
-      `
+      `,
     ]}
   />
 ));
