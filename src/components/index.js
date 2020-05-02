@@ -13,3 +13,5 @@ export * from "./loading";
 
 export * from "./auth";
 export * from "./load-more";
+
+export * from "./uppy-modal";

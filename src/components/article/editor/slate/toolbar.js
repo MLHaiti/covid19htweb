@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useEffect } from "react";
 import { useSlate } from "slate-react";
 import { Box, Flex } from "@chakra-ui/core";
+import { mutate } from "swr";
 import {
   isBlockActive,
   toggleBlock,
@@ -24,6 +25,10 @@ export const Toolbar = () => {
     const { top, height, left, width } = toolbar;
 
     barInfo.current = { top, height, left, width };
+    return () => {
+      mutate("articleEditorToolbarPosition", { height: 0, top: 0 });
+      mutate("articleEditorScrollTop", { scrollTop: 0 });
+    };
   }, []);
 
   const onClick = useCallback(

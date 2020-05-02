@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 // Hook
 export function useWindowSize() {
@@ -28,3 +29,10 @@ export function useWindowSize() {
 
   return windowSize;
 }
+
+export const useScrollTop = (key) => {
+  const { data } = useSWR(key, {
+    initialData: { scrollTop: 0 },
+  });
+  return data;
+};
