@@ -6,9 +6,6 @@ import { initGA, logPageView } from "utils/analytics";
 import SEO from "../setup/seo";
 import { theme } from "../setup/theme";
 import "@uppy/core/dist/style.css";
-// import "@uppy/drag-drop/dist/style.css";
-import "@uppy/dashboard/dist/style.css";
-import "@uppy/webcam/dist/style.css";
 
 import "../styles/index.css";
 
