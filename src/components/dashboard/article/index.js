@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Stack,
@@ -22,6 +22,8 @@ export default function ArticleView() {
     const { scrollTop } = document.getElementById("drawer-article-editor-body");
     mutate("articleEditorScrollTop", { scrollTop });
   };
+
+  useEffect(() => () => mutate("articleEditorScrollTop", { scrollTop: 0 }), []);
 
   return (
     <Box

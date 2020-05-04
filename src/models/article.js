@@ -16,13 +16,21 @@ const ArticleSchema = new mongoose.Schema(
       unique: true,
       index: true,
     },
-    coverImage: {
+    coverUrl: {
       type: String,
       validate: (value) => isUrl(value),
     },
 
     tags: {
       tags: { type: [String], index: true },
+    },
+
+    draftContent: {
+      type: String,
+    },
+
+    publishContent: {
+      type: String,
     },
 
     publishDate: Date,
