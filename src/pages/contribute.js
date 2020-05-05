@@ -1,14 +1,12 @@
 import React from "react";
-import Head from "next/head";
+import { PageTitle } from "utils/page-title";
 import { Layout } from "components";
 
 import { Box, Heading, Link } from "@chakra-ui/core";
 
 export default () => (
   <>
-    <Head>
-      <title>Kontribye</title>
-    </Head>
+    <PageTitle title="Kontribye" />
     <Layout>
       <Heading as="h1" size="lg" marginTop="8" marginBottom="2">
         Comment contribuer ?

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Head from "next/head";
+import { PageTitle } from "utils/page-title";
 import Router from "next/router";
 import NextLink from "next/link";
 import { useForm } from "react-hook-form";
@@ -85,10 +85,7 @@ const Signup = () => {
 
   return (
     <>
-      <Head>
-        <title>Kreye yon kont</title>
-      </Head>
-
+      <PageTitle title="Kreye yon kont" />
       <AuthLayout>
         <Box
           backgroundColor="white"
