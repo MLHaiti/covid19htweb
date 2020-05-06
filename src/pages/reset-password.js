@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Head from "next/head";
+import { PageTitle } from "utils/page-title";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 import { useForm } from "react-hook-form";
@@ -36,9 +36,7 @@ const ResetPassword = () => {
   }
   return (
     <>
-      <Head>
-        <title>Risèt modepas</title>
-      </Head>
+      <PageTitle title="Risèt modepas" />
 
       <AuthLayout>
         <Box

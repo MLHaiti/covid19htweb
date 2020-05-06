@@ -20,8 +20,8 @@ const flow = flowRight([
   withReact,
 ]);
 
-export const Editor = ({ contentRef, content = initialValue }) => {
-  const [value, setValue] = useState(content);
+export const Editor = ({ contentRef, initialValue }) => {
+  const [value, setValue] = useState(initialValue);
 
   const editor = useMemo(() => flow(createEditor()), []);
 
@@ -36,13 +36,6 @@ export const Editor = ({ contentRef, content = initialValue }) => {
 
   const renderElement = useCallback(element, []);
   const renderLeaf = useCallback(leaf, []);
-
-  React.useEffect(() => {
-    const _value = window.localStorage.getItem("draftArticle");
-    if (_value) {
-      setValue(JSON.parse(_value));
-    }
-  }, []);
 
   return (
     <Box
@@ -77,18 +70,3 @@ export const Editor = ({ contentRef, content = initialValue }) => {
     </Box>
   );
 };
-
-const initialValue = [
-  {
-    type: "paragraph",
-    children: [{ text: "An opening paragraph..." }],
-  },
-  {
-    type: "quote",
-    children: [{ text: "A wise quote." }],
-  },
-  {
-    type: "paragraph",
-    children: [{ text: "A closing paragraph!" }],
-  },
-];

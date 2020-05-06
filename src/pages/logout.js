@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { Box, Heading, Button, Text, useToast } from "@chakra-ui/core";
 import fetch from "utils/fetch";
 import { FullDiv } from "components";

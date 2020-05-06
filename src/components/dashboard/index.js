@@ -14,7 +14,7 @@ import { useUser } from "utils/hooks";
 import useSWR from "swr";
 
 import { PageTitle } from "utils/page-title";
-import { TopMenu } from "./top-menu";
+// import { TopMenu } from "./top-menu";
 
 import { WrappedMenu } from "./layout";
 import { sideMenuStore } from "./store";
@@ -45,12 +45,12 @@ export default () => {
   return (
     <>
       <PageTitle title="Dachbòd" />
-      <TopMenu
+      {/* <TopMenu
         onMenuClick={() => {
           isOpen ? onClose() : onOpen();
         }}
         isOpen={isOpen}
-      />
+      /> */}
 
       <Flex direction="row" minHeight="full" backgroundColor="#ffffff">
         <Drawer size={202} isOpen={isOpen} placement="left" onClose={onClose}>
@@ -67,7 +67,7 @@ export default () => {
         <Box
           minHeight="full"
           width="100%"
-          marginTop="50px"
+          // marginTop="50px" // we deactivate the top bar for now
           marginLeft={{ base: 0, lg: "202px" }}
         >
           {active === "setting" ? <SettingView user={user} /> : null}

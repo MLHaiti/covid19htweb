@@ -52,11 +52,12 @@ handler.patch(async (req, res) => {
   }
 
   if (action === "updateProfile") {
-    const { firstName, lastName, signature } = data;
+    const { firstName, lastName, signature, pictureUrl } = data;
     // because undefined would remove the current field if present
     user.firstName = firstName || user.firstName;
     user.lastName = lastName || user.lastName;
     user.signature = signature || user.signature;
+    user.pictureUrl = pictureUrl || user.pictureUrl;
   }
 
   try {

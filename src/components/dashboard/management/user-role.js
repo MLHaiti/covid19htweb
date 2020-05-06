@@ -24,7 +24,7 @@ import {
   findTransferableRoles,
 } from "utils/user-helpers";
 import { TOAST_ERROR, TOAST_SUCCESS } from "utils/misc-helpers";
-import { Section, SectionContent } from "../common/section";
+import { Section, Content } from "../common/section";
 
 export const ManageUserRole = () => {
   console.log("go");
@@ -140,7 +140,7 @@ const UserRole = ({
     <>
       <Box as="hr" marginY="4" />
       <AugmentChildren labelWidth={120}>
-        <SectionContent label="Imèl">
+        <Content label="Imèl">
           <Box>
             <Stack isInline>
               <Text marginRight="2">{email}</Text>
@@ -158,17 +158,17 @@ const UserRole = ({
               </Text>
             )}
           </Box>
-        </SectionContent>
-        <SectionContent label="Prenon">
+        </Content>
+        <Content label="Prenon">
           <Box>{firstName}</Box>
-        </SectionContent>
-        <SectionContent label="Non fanmi">
+        </Content>
+        <Content label="Non fanmi">
           <Box>{lastName}</Box>
-        </SectionContent>
-        <SectionContent label="Siyati">
+        </Content>
+        <Content label="Siyati">
           <Box>{signature}</Box>
-        </SectionContent>
-        <SectionContent label="Wòl">
+        </Content>
+        <Content label="Wòl">
           <FullDiv mb="4">
             {roles.length > 0 ? (
               <>
@@ -235,8 +235,8 @@ const UserRole = ({
               </>
             ) : null}
           </FullDiv>
-        </SectionContent>
-        <SectionContent label="">
+        </Content>
+        <Content label="">
           <Flex direction="row" alignItems="center">
             <Button
               isLoading={isSaving}
@@ -249,7 +249,7 @@ const UserRole = ({
               Anrejistre
             </Button>
           </Flex>
-        </SectionContent>
+        </Content>
       </AugmentChildren>
     </>
   );

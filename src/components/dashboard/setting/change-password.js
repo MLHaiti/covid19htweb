@@ -13,11 +13,7 @@ import {
 } from "@chakra-ui/core";
 import { useForm } from "react-hook-form";
 import fetch from "utils/fetch";
-import {
-  FormSection,
-  FormSectionContent,
-  SectionContent,
-} from "../common/section";
+import { Section, FormContent, Content } from "../common/section";
 
 export function ChangePasswordView() {
   const {
@@ -86,130 +82,132 @@ export function ChangePasswordView() {
 
   return (
     <>
-      <FormSection name="Change modepas" onSubmit={handleSubmit(onSubmit)}>
-        <Box>
-          <SectionContent label="" labelWidth={140}>
-            {failed && <Text color="red.900">{failed}</Text>}
-          </SectionContent>
-        </Box>
-        <FormSectionContent
-          label="Modepas aktyèl"
-          htmlFor="password"
-          alignRight
-          labelWidth={140}
-        >
-          <InputGroup width="full">
-            <InputLeftElement>
-              <Icon name="lock" color="gray.300" />
-            </InputLeftElement>
-            <Input
-              type={viewPass ? "text" : "password"}
-              name="password"
-              id="password"
-              autoComplete="current-password"
-              placeholder="Mete modepas ou"
-              isRequired
-              width="full"
-              size="md"
-              ref={register({ required: true, min: 6 })}
-            />
-            <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="sm" onClick={toggleView}>
-                {viewPass ? "Hide" : "Show"}
+      <Section name="Change modepas">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Box>
+            <Content label="" labelWidth={140}>
+              {failed && <Text color="red.900">{failed}</Text>}
+            </Content>
+          </Box>
+          <FormContent
+            label="Modepas aktyèl"
+            htmlFor="password"
+            alignRight
+            labelWidth={140}
+          >
+            <InputGroup width="full">
+              <InputLeftElement>
+                <Icon name="lock" color="gray.300" />
+              </InputLeftElement>
+              <Input
+                type={viewPass ? "text" : "password"}
+                name="password"
+                id="password"
+                autoComplete="current-password"
+                placeholder="Mete modepas ou"
+                isRequired
+                width="full"
+                size="md"
+                ref={register({ required: true, min: 6 })}
+              />
+              <InputRightElement width="4.5rem">
+                <Button h="1.75rem" size="sm" onClick={toggleView}>
+                  {viewPass ? "Hide" : "Show"}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </FormContent>
+          <FormContent
+            label="Nouvo modepas"
+            htmlFor="newPassword"
+            alignRight
+            labelWidth={140}
+          >
+            <Box width="full">
+              <InputGroup width="full">
+                <InputLeftElement>
+                  <Icon name="lock" color="gray.300" />
+                </InputLeftElement>
+                <Input
+                  type={viewPass ? "text" : "password"}
+                  name="newPassword"
+                  id="newPassword"
+                  autoComplete="new-password"
+                  placeholder="Mete nouvo modepass la"
+                  isRequired
+                  width="full"
+                  size="md"
+                  ref={register({
+                    required: true,
+                    validate: (value) => value.length > 5,
+                  })}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={toggleView}>
+                    {viewPass ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              {errors.newPassword ? (
+                <Text color="red.500" fontSize="sm" marginBottom="2">
+                  Modepas la obligatwa e li dwe gen pou pi pitit 6 chif ak lèt.
+                </Text>
+              ) : null}
+            </Box>
+          </FormContent>
+          <FormContent
+            label="Antre li ankò"
+            htmlFor="newPasswordConf"
+            alignRight
+            labelWidth={140}
+          >
+            <Box width="full">
+              <InputGroup width="full">
+                <InputLeftElement>
+                  <Icon name="lock" color="gray.300" />
+                </InputLeftElement>
+                <Input
+                  type={viewPass ? "text" : "password"}
+                  name="newPasswordConf"
+                  id="newPasswordConf"
+                  autoComplete="new-password"
+                  placeholder="Mete nouvo modepas ankò"
+                  isRequired
+                  width="full"
+                  size="md"
+                  ref={register({
+                    required: true,
+                    validate: (value) => value === getValues().newPassword,
+                  })}
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={toggleView}>
+                    {viewPass ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              {errors.newPasswordConf ? (
+                <Text color="red.500" fontSize="sm" marginBottom="2">
+                  2 Modepas yo pa dwe diferan.
+                </Text>
+              ) : null}
+            </Box>
+          </FormContent>
+          <Box>
+            <Content label="" labelWidth={140}>
+              <Button
+                type="submit"
+                variantColor="green"
+                isLoading={formState.isSubmitting}
+                isDisabled={formState.isSubmitting}
+                loadingText="Nap change modepas la."
+              >
+                Change modepas la.
               </Button>
-            </InputRightElement>
-          </InputGroup>
-        </FormSectionContent>
-        <FormSectionContent
-          label="Nouvo modepas"
-          htmlFor="newPassword"
-          alignRight
-          labelWidth={140}
-        >
-          <Box width="full">
-            <InputGroup width="full">
-              <InputLeftElement>
-                <Icon name="lock" color="gray.300" />
-              </InputLeftElement>
-              <Input
-                type={viewPass ? "text" : "password"}
-                name="newPassword"
-                id="newPassword"
-                autoComplete="new-password"
-                placeholder="Mete nouvo modepass la"
-                isRequired
-                width="full"
-                size="md"
-                ref={register({
-                  required: true,
-                  validate: (value) => value.length > 5,
-                })}
-              />
-              <InputRightElement width="4.5rem">
-                <Button h="1.75rem" size="sm" onClick={toggleView}>
-                  {viewPass ? "Hide" : "Show"}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            {errors.newPassword ? (
-              <Text color="red.500" fontSize="sm" marginBottom="2">
-                Modepas la obligatwa e li dwe gen pou pi pitit 6 chif ak lèt.
-              </Text>
-            ) : null}
+            </Content>
           </Box>
-        </FormSectionContent>
-        <FormSectionContent
-          label="Antre li ankò"
-          htmlFor="newPasswordConf"
-          alignRight
-          labelWidth={140}
-        >
-          <Box width="full">
-            <InputGroup width="full">
-              <InputLeftElement>
-                <Icon name="lock" color="gray.300" />
-              </InputLeftElement>
-              <Input
-                type={viewPass ? "text" : "password"}
-                name="newPasswordConf"
-                id="newPasswordConf"
-                autoComplete="new-password"
-                placeholder="Mete nouvo modepas ankò"
-                isRequired
-                width="full"
-                size="md"
-                ref={register({
-                  required: true,
-                  validate: (value) => value === getValues().newPassword,
-                })}
-              />
-              <InputRightElement width="4.5rem">
-                <Button h="1.75rem" size="sm" onClick={toggleView}>
-                  {viewPass ? "Hide" : "Show"}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            {errors.newPasswordConf ? (
-              <Text color="red.500" fontSize="sm" marginBottom="2">
-                2 Modepas yo pa dwe diferan.
-              </Text>
-            ) : null}
-          </Box>
-        </FormSectionContent>
-        <Box>
-          <SectionContent label="" labelWidth={140}>
-            <Button
-              type="submit"
-              variantColor="green"
-              isLoading={formState.isSubmitting}
-              isDisabled={formState.isSubmitting}
-              loadingText="Nap change modepas la."
-            >
-              Change modepas la.
-            </Button>
-          </SectionContent>
-        </Box>
-      </FormSection>
+        </form>
+      </Section>
     </>
   );
 }

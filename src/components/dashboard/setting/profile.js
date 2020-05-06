@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Button,
@@ -7,18 +7,13 @@ import {
   Textarea,
   useToast,
 } from "@chakra-ui/core";
-import useSWR, { mutate } from "swr";
+import useSWR from "swr";
 import { useForm } from "react-hook-form";
 
 import { FullDiv } from "components/brics";
 import { TOAST_ERROR, TOAST_SUCCESS } from "utils/misc-helpers";
 import fetch from "utils/fetch";
-import {
-  Section,
-  SectionContent,
-  FormSection,
-  FormSectionContent,
-} from "../common/section";
+import { Section, Content } from "../common/section";
 import { ProfileAvatar } from "./avatar";
 
 export const PublicProfileView = () => {
@@ -28,6 +23,7 @@ export const PublicProfileView = () => {
     handleSubmit,
     errors,
     register,
+    unregister,
     getValues,
     setValue,
     formState,
@@ -36,11 +32,19 @@ export const PublicProfileView = () => {
       firstName: user.firstName || "",
       lastName: user.lastName || "",
       signature: user.signature || "",
+      pictureUrl: user.pictureUrl || "/images/foto.png",
     },
   });
   const toast = useToast();
+  console.log(getValues());
 
-  const [failed, setFailed] = useState("");
+  useEffect(() => {
+    register({ name: "pictureUrl" });
+
+    return () => unregister("pictureUrl"); // unregister input after component unmount
+  }, [register]);
+
+  // const [failed, setFailed] = useState("");
 
   function onSubmit(values) {
     fetch("/api/user/me", {
@@ -59,13 +63,18 @@ export const PublicProfileView = () => {
   }
 
   return (
-    <>
-      <FormSection onSubmit={handleSubmit(onSubmit)} name="Profil piblik">
-        {/* <SectionContent label="Foto">
+    <Section name="Profil piblik">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* <Content label="Foto">
           <Box>TO BE IMPLEMENTED</Box>
-        </SectionContent> */}
-        <ProfileAvatar />
-        <SectionContent label="Prenon" labelWidth={80}>
+        </Content> */}
+        <ProfileAvatar
+          current={getValues().pictureUrl}
+          onChange={(picUrl) => {
+            setValue("pictureUrl", picUrl);
+          }}
+        />
+        <Content label="Prenon" labelWidth={80}>
           <FullDiv>
             <Input
               name="firstName"
@@ -74,8 +83,8 @@ export const PublicProfileView = () => {
             />
             <FormHelperText id="email-helper-text">Non pa ou.</FormHelperText>
           </FullDiv>
-        </SectionContent>
-        <SectionContent label="Non" labelWidth={80}>
+        </Content>
+        <Content label="Non" labelWidth={80}>
           <FullDiv>
             <Input
               name="lastName"
@@ -86,8 +95,8 @@ export const PublicProfileView = () => {
               Non fanmi ou.
             </FormHelperText>
           </FullDiv>
-        </SectionContent>
-        <SectionContent label="Siyati" labelWidth={80}>
+        </Content>
+        <Content label="Siyati" labelWidth={80}>
           <FullDiv>
             <Textarea
               name="signature"
@@ -99,9 +108,9 @@ export const PublicProfileView = () => {
               Yon siyati ki ap parèt anba tèks ou pibliye.
             </FormHelperText>
           </FullDiv>
-        </SectionContent>
+        </Content>
         <Box>
-          <SectionContent label="" labelWidth={80}>
+          <Content label="" labelWidth={80}>
             <Button
               type="submit"
               variantColor="green"
@@ -111,9 +120,9 @@ export const PublicProfileView = () => {
             >
               Òpdet profil la.
             </Button>
-          </SectionContent>
+          </Content>
         </Box>
-      </FormSection>
-    </>
+      </form>
+    </Section>
   );
 };

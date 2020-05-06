@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Stack,
@@ -12,7 +12,12 @@ import {
 import { mutate } from "swr";
 import { ArticleCompositor } from "./article-compositor";
 
+import { ArticleTable } from "./article-table";
+
 export default function ArticleView() {
+  const [article, setArticle] = useState({
+    content: [{ type: "paragraph", children: [{ text: "" }] }],
+  });
   const [mode, setMode] = useState("active"); // passive or active
   const { isOpen, onOpen, onClose } = useDisclosure(false);
 
@@ -23,46 +28,40 @@ export default function ArticleView() {
     mutate("articleEditorScrollTop", { scrollTop });
   };
 
+  useEffect(() => () => mutate("articleEditorScrollTop", { scrollTop: 0 }), []);
+
   return (
-    <Box
-      width="full"
-      mt="4"
-      paddingX="4"
-      display="flex"
-      flexDirection="row"
-      justifyContent="space-between"
-    >
-      <Stack width="500px" border="1px" borderColor="gray.200" padding="4">
-        <Button
-          onClick={() => {
-            setContent({ content: [] });
-            onOpen();
-          }}
-          variantColor="green"
-          isDisabled={isOpen}
-        >
-          kreye yon atik
+    <Box paddingY="8" paddingX="16">
+      <Box marginBottom="16">
+        <Button variantColor="green" isDisabled={isOpen} onClick={onOpen}>
+          Kreye yon nouvo atik
         </Button>
-      </Stack>
-      {mode === "active" ? (
-        <Drawer
-          onClose={onClose}
-          isOpen={isOpen}
-          size="70%"
-          scrollBehavior="inside"
-          id="article-editor"
-          // closeOnEsc={false}
-        >
-          <DrawerOverlay />
-          <DrawerContent>
-            <DrawerBody onScroll={onScroll}>
-              <Stack width="710px" borderRadius="md">
-                <ArticleCompositor article={content} onClose={onClose} />
-              </Stack>
-            </DrawerBody>
-          </DrawerContent>
-        </Drawer>
-      ) : null}
+      </Box>
+      <ArticleTable />
+      <Drawer
+        onClose={onClose}
+        isOpen={isOpen}
+        size="85%"
+        scrollBehavior="inside"
+        id="article-editor"
+        blockScrollOnMount
+
+        // closeOnEsc={false}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerBody onScroll={onScroll}>
+            <ArticleCompositor
+              article={article}
+              onComplete={() => {
+                console.log("complete");
+                onClose();
+              }}
+              autoSave={() => {}}
+            />
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </Box>
   );
 }

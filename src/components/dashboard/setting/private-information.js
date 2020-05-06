@@ -5,7 +5,7 @@ import useSWR from "swr";
 import { FullDiv } from "components/brics";
 import { managerialRoles, userRolesKeyText } from "utils/user-helpers";
 
-import { Section, SectionContent } from "../common/section";
+import { Section, Content } from "../common/section";
 
 export const PrivateInformation = () => {
   const toast = useToast();
@@ -14,7 +14,7 @@ export const PrivateInformation = () => {
 
   return (
     <Section name="Enfomasyon pesonel">
-      <SectionContent label="Imèl">
+      <Content label="Imèl">
         <Box>
           <Box as="span" color="blue.400">
             {email}.{" "}
@@ -41,8 +41,8 @@ export const PrivateInformation = () => {
             </span>
           )}
         </Box>
-      </SectionContent>
-      <SectionContent label="Wòl">
+      </Content>
+      <Content label="Wòl">
         <Box>
           <FullDiv>
             {roles.length > 0 ? (
@@ -69,7 +69,7 @@ export const PrivateInformation = () => {
             ) : null}
           </FullDiv>
         </Box>
-      </SectionContent>
+      </Content>
     </Section>
   );
 };

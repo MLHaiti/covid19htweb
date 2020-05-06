@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import Head from "next/head";
+import { PageTitle } from "utils/page-title";
 import { Layout, LoadMore } from "components";
 import { v4 as uuidv4 } from "uuid";
 import { Box, Heading } from "@chakra-ui/core";
@@ -22,9 +22,7 @@ export default () => {
 
   return (
     <>
-      <Head>
-        <title>Codvid19ht</title>
-      </Head>
+      <PageTitle title="Akèy" />
       <Layout>
         <Box width="full" marginTop="24">
           <Heading as="h1" size="2xl" textAlign="center">

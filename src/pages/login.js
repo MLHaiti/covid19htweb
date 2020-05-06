@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Head from "next/head";
+import { PageTitle } from "utils/page-title";
 import Router, { useRouter } from "next/router";
 import NextLink from "next/link";
 import { useForm } from "react-hook-form";
@@ -87,10 +87,7 @@ const Login = () => {
 
   return (
     <>
-      <Head>
-        <title>Konekte</title>
-      </Head>
-
+      <PageTitle title="Konekte" />
       <AuthLayout>
         <Box
           backgroundColor="white"

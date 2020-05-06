@@ -31,6 +31,8 @@ export default () => {
     <>
       <Head>
         <title>Dashboard</title>
+        <link rel="stylesheet" href="/css/uppy-dashboard.css" />
+        <link rel="stylesheet" href="/css/uppy-webcam.css" />
       </Head>
       <ClientOnly />
     </>
