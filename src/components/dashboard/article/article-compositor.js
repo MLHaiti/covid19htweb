@@ -15,7 +15,6 @@ import {
   Heading,
   Accordion,
   AccordionItem,
-  Checkbox,
   Switch,
 } from "@chakra-ui/core";
 import { useForm } from "react-hook-form";

@@ -14,7 +14,7 @@ export default async function (req, res, next) {
     bufferCommands: false, // Disable mongoose buffering
     bufferMaxEntries: 0,
     dbName: "santepam",
-    // autoIndex: true, // false TODO turn this to false once we have more data
+    // autoIndex: false, // TODO we will deactivate auto-index but we will need to stll build the indexes
   });
   req.mongoose = mongoose;
   next();
