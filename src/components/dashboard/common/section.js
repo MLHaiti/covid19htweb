@@ -1,17 +1,40 @@
 import React from "react";
 import T from "prop-types";
-import {
-  Box,
-  Flex,
-  Heading,
-  useTheme,
-  FormLabel,
-  FormHelperText,
-} from "@chakra-ui/core";
+import { Box, Flex, FormLabel } from "@chakra-ui/core";
 
 const LABEL_WIDTH = 50;
 
-export const SectionContent = ({ label, labelWidth, children }) => (
+export const Section = ({ name, children }) => (
+  <Box
+    as="section"
+    margin={{ lg: 8 }}
+    marginX={{ lg: 12 }}
+    shadow="rgba(0, 0, 0, 0.15) 0px 0px 20px 0px"
+    overflow="hidden"
+    borderRadius="lg"
+  >
+    <Box
+      as="header"
+      paddingX="6"
+      paddingY="4"
+      backgroundColor="#6c7ae0" // "#F5F5F5"
+      color="white"
+      fontWeight="light"
+    >
+      {name}
+    </Box>
+    <Box as="main" paddingX="4">
+      {children}
+    </Box>
+  </Box>
+);
+
+Section.propTypes = {
+  name: T.string.isRequired,
+  children: T.node.isRequired,
+};
+
+export const Content = ({ label, labelWidth, children }) => (
   <Flex
     direction={{
       base: "column",
@@ -32,57 +55,17 @@ export const SectionContent = ({ label, labelWidth, children }) => (
   </Flex>
 );
 
-SectionContent.propTypes = {
+Content.propTypes = {
   label: T.string.isRequired,
   labelWidth: T.number,
   children: T.node.isRequired,
 };
 
-SectionContent.defaultProps = {
+Content.defaultProps = {
   labelWidth: LABEL_WIDTH,
 };
 
-export const Section = ({ name, children }) => (
-  <Box
-    as="section"
-    margin={{ lg: 8 }}
-    marginX={{ lg: 12 }}
-    border="1px"
-    borderColor="gray.400"
-    borderRadius="lg"
-  >
-    <Box
-      as="header"
-      paddingX="6"
-      paddingY="4"
-      backgroundColor="#F5F5F5"
-      borderBottom="none"
-      borderRadius="lg"
-      borderBottomWidth="0"
-      borderTopColor="gray.400"
-      borderBottomLeftRadius={0}
-      borderBottomRightRadius={0}
-      fontWeight="light"
-    >
-      {name}
-    </Box>
-    <Box as="main" paddingX="4">
-      {children}
-    </Box>
-  </Box>
-);
-
-Section.propTypes = {
-  name: T.string.isRequired,
-  children: T.node.isRequired,
-};
-
-export const FormSectionContent = ({
-  label,
-  labelWidth,
-  children,
-  htmlFor,
-}) => (
+export const FormContent = ({ label, labelWidth, children, htmlFor }) => (
   <Flex
     direction={{
       base: "column",
@@ -95,9 +78,8 @@ export const FormSectionContent = ({
       width={`${labelWidth}px`}
       minWidth={`${labelWidth}px`}
       fontWeight="bold"
-      htmlFor={htmlFor}
-      // textAlign={}
       marginRight="8"
+      htmlFor={htmlFor}
     >
       {label}:
     </FormLabel>
@@ -105,51 +87,13 @@ export const FormSectionContent = ({
   </Flex>
 );
 
-FormSectionContent.propTypes = {
+FormContent.propTypes = {
   label: T.string.isRequired,
   labelWidth: T.number,
   children: T.node.isRequired,
   htmlFor: T.string.isRequired,
 };
 
-FormSectionContent.defaultProps = {
+FormContent.defaultProps = {
   labelWidth: LABEL_WIDTH,
-};
-
-export const FormSection = ({ name, children, onSubmit }) => (
-  <Box
-    as="section"
-    margin={{ lg: 8 }}
-    marginX={{ lg: 12 }}
-    border="1px"
-    borderColor="gray.400"
-    borderRadius="lg"
-  >
-    <Box
-      as="header"
-      paddingX="6"
-      paddingY="4"
-      backgroundColor="#F5F5F5"
-      borderBottom="none"
-      borderRadius="lg"
-      borderBottomWidth="0"
-      borderTopColor="gray.400"
-      borderBottomLeftRadius={0}
-      borderBottomRightRadius={0}
-      fontWeight="light"
-    >
-      {name}
-    </Box>
-    <Box as="main" paddingX="4">
-      <Box as="form" onSubmit={onSubmit}>
-        {children}
-      </Box>
-    </Box>
-  </Box>
-);
-
-FormSection.propTypes = {
-  name: T.string.isRequired,
-  children: T.node.isRequired,
-  onSubmit: T.func.isRequired,
 };
