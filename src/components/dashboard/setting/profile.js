@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Button,
@@ -23,6 +23,7 @@ export const PublicProfileView = () => {
     handleSubmit,
     errors,
     register,
+    unregister,
     getValues,
     setValue,
     formState,
@@ -31,9 +32,17 @@ export const PublicProfileView = () => {
       firstName: user.firstName || "",
       lastName: user.lastName || "",
       signature: user.signature || "",
+      pictureUrl: user.pictureUrl || "/images/foto.png",
     },
   });
   const toast = useToast();
+  console.log(getValues());
+
+  useEffect(() => {
+    register({ name: "pictureUrl" });
+
+    return () => unregister("pictureUrl"); // unregister input after component unmount
+  }, [register]);
 
   // const [failed, setFailed] = useState("");
 
@@ -59,7 +68,12 @@ export const PublicProfileView = () => {
         {/* <Content label="Foto">
           <Box>TO BE IMPLEMENTED</Box>
         </Content> */}
-        <ProfileAvatar />
+        <ProfileAvatar
+          current={getValues().pictureUrl}
+          onChange={(picUrl) => {
+            setValue("pictureUrl", picUrl);
+          }}
+        />
         <Content label="Prenon" labelWidth={80}>
           <FullDiv>
             <Input
