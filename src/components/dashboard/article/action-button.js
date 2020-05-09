@@ -3,23 +3,38 @@ import T from "prop-types";
 
 import { Button, SimpleGrid } from "@chakra-ui/core";
 
-const actions = [
-  { name: "save", text: "Anrejistre Bouyon", color: "yellow" },
-  { name: "review", text: "Voye nan revizyon", color: "teal" },
-  { name: "publish", text: "Pibliye", color: "green" },
-  { name: "delete", text: "Efase atik la nèt", color: "red" },
+const list = [
+  {
+    name: "save",
+    text: "Anrejistre Bouyon",
+    color: "yellow",
+    action: "onSave",
+  },
+  {
+    name: "review",
+    text: "Voye nan revizyon",
+    color: "teal",
+    action: "onReview",
+  },
+  { name: "publish", text: "Pibliye", color: "green", action: "onPublish" },
+  {
+    name: "delete",
+    text: "Efase atik la nèt",
+    color: "red",
+    action: "onDelete",
+  },
 ];
 
-export const Actions = ({ onClick }) => (
+export const Actions = ({ onClick, actions }) => (
   <SimpleGrid gridRowGap="8" columns="2" gridColumnGap="8">
-    {actions.map(({ name, color, text, ...rest }) => (
+    {list.map(({ name, color, text, action, ...rest }) => (
       <Button
         key={`editor-action-${name}`}
         variantColor={color}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          onClick(name);
+          actions[action]();
         }}
         {...rest}
       >

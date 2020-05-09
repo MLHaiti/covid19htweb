@@ -36,7 +36,6 @@ export const PublicProfileView = () => {
     },
   });
   const toast = useToast();
-  console.log(getValues());
 
   useEffect(() => {
     register({ name: "pictureUrl" });

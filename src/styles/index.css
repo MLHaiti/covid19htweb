@@ -2,6 +2,10 @@ html,
 body,
 #__next {
   position: relative;
-  overflow: auto;
   scroll-behavior: smooth;
+}
+
+.removeScroll {
+  overflow-x:hidden;
+  overflow-y:hidden;
 }

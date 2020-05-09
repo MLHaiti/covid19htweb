@@ -15,9 +15,7 @@ import { ArticleCompositor } from "./article-compositor";
 import { ArticleTable } from "./article-table";
 
 export default function ArticleView() {
-  const [article, setArticle] = useState({
-    content: [{ type: "paragraph", children: [{ text: "" }] }],
-  });
+  const [articleInfo, setArticleInfo] = useState({});
   const [mode, setMode] = useState("active"); // passive or active
   const { isOpen, onOpen, onClose } = useDisclosure(false);
 
@@ -30,29 +28,44 @@ export default function ArticleView() {
 
   useEffect(() => () => mutate("articleEditorScrollTop", { scrollTop: 0 }), []);
 
+  const onRowClick = (row) => {
+    const { original } = row;
+    onOpen();
+    setArticleInfo(original);
+  };
+
+  console.log(articleInfo);
+
   return (
     <Box paddingY="8" paddingX="16">
       <Box marginBottom="16">
-        <Button variantColor="green" isDisabled={isOpen} onClick={onOpen}>
+        <Button
+          variantColor="green"
+          isDisabled={isOpen}
+          onClick={() => {
+            onOpen();
+            setArticleInfo({});
+          }}
+        >
           Kreye yon nouvo atik
         </Button>
       </Box>
-      <ArticleTable />
+      <ArticleTable onRowClick={onRowClick} />
       <Drawer
         onClose={onClose}
         isOpen={isOpen}
         size="85%"
         scrollBehavior="inside"
         id="article-editor"
+        closeOnEsc={false}
         blockScrollOnMount
-
-        // closeOnEsc={false}
       >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerBody onScroll={onScroll}>
             <ArticleCompositor
-              article={article}
+              key={articleInfo.id}
+              articleInfo={articleInfo}
               onComplete={() => {
                 console.log("complete");
                 onClose();

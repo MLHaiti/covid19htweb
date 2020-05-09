@@ -5,13 +5,21 @@ import React, {
   useMemo,
   useCallback,
 } from "react";
-import { Box, Flex } from "@chakra-ui/core";
+import { Box, Flex, Button, Text } from "@chakra-ui/core";
 import { useTable } from "react-table";
-
 import styled from "@emotion/styled";
 import { v4 as uuidv4 } from "uuid";
+import useSWR from "swr";
 
-export const ArticleTable = () => {
+export const ArticleTable = ({ onRowClick }) => {
+  const { data, error } = useSWR("/getAllArticles", async () => {
+    const a = window.localStorage.getItem("@articleList");
+    return a ? JSON.parse(a) : [];
+  });
+
+  const rowClick = useCallback((row) => {
+    onRowClick(row);
+  }, []);
   const columns = useMemo(
     () => [
       {
@@ -30,15 +38,31 @@ export const ArticleTable = () => {
         Header: "Dat dènye modifikasyon",
         accessor: "updatedAt",
       },
+      {
+        Header: "Action",
+        Cell: ({ cell: { row } }) => (
+          <Button
+            variantColor="blue"
+            onClick={() => {
+              rowClick(row);
+            }}
+          >
+            Open
+          </Button>
+        ),
+      },
     ],
     []
   );
 
-  const data = useMemo(testData, []);
-
   return (
     <Styles>
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={data || []} />
+      {data && data.length === 0 ? (
+        <Flex height="48" justifyContent="center" alignItems="center">
+          <Text fontSize="lg">Ou poko gen atik</Text>
+        </Flex>
+      ) : null}
     </Styles>
   );
 };
@@ -54,10 +78,6 @@ const Table = ({ columns, data }) => {
     columns,
     data,
   });
-
-  const rowClick = useCallback((row) => {
-    console.log(row);
-  }, []);
 
   return (
     <Box as="table" width="full" {...getTableProps()}>
@@ -76,9 +96,7 @@ const Table = ({ columns, data }) => {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map((cell) => (
-                <td {...cell.getCellProps()} onClick={rowClick}>
-                  {cell.render("Cell")}
-                </td>
+                <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
               ))}
             </tr>
           );
