@@ -34,8 +34,6 @@ export default function ArticleView() {
     setArticleInfo(original);
   };
 
-  console.log(articleInfo);
-
   return (
     <Box paddingY="8" paddingX="16">
       <Box marginBottom="16">
@@ -47,7 +45,7 @@ export default function ArticleView() {
             setArticleInfo({});
           }}
         >
-          Kreye yon nouvo atik
+          Kreye yon nouvo atik.
         </Button>
       </Box>
       <ArticleTable onRowClick={onRowClick} />

@@ -51,9 +51,9 @@ export const ArticleCompositor = ({ articleInfo, autoSave, onComplete }) => {
     };
   });
 
-  console.log(data);
-
-  const { register, handleSubmit, getValues } = useForm();
+  const { register, handleSubmit, getValues } = useForm({
+    defaultValues: articleInfo,
+  });
   const submitRef = useRef(null);
   const contentRef = useRef(null);
 
