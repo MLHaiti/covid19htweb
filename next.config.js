@@ -1,6 +1,7 @@
 require("dotenv").config();
 const withPlugins = require("next-compose-plugins");
 const withImages = require("next-images");
+const withBundleAnalyzer = require("@next/bundle-analyzer");
 const path = require("path");
 // const withPWA = require("next-pwa");
 
@@ -32,6 +33,12 @@ const exportByEnv =
     : withPlugins(
         [
           // [withPWA, { pwa: { dest: "public" } }],
+          [
+            withBundleAnalyzer,
+            {
+              enabled: process.env.ANALYZE === "true",
+            },
+          ],
           [withImages, { exclude: path.resolve(__dirname, "src/assets/svg") }],
         ],
         nextConfig

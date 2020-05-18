@@ -66,6 +66,7 @@
     "react-s3-uploader": "^4.9.2",
     "react-share": "^4.1.0",
     "react-table": "^7.0.4",
+    "reakit": "^1.0.2",
     "sanitize-html": "^1.23.0",
     "slate": "^0.58.0",
     "slate-history": "^0.58.0",
