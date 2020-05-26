@@ -27,7 +27,6 @@ import { TOAST_ERROR, TOAST_SUCCESS } from "utils/misc-helpers";
 import { Section, Content } from "../common/section";
 
 export const ManageUserRole = () => {
-  console.log("go");
   const emailRef = useRef(null);
   const [email, setEmail] = useState("");
   const [isActive, setActive] = useState(false);

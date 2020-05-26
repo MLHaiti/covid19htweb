@@ -17,7 +17,6 @@ export const ImageGallery = () => {
       </Stack>
       <UppyModal
         onModalClose={(data) => {
-          console.log(data);
           if (Array.isArray(data) && data.length > 0) {
             setImages([...images, { src: data.uploadURL, type: data.type }]);
           }

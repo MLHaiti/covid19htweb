@@ -10,7 +10,7 @@ const HOTKEYS = {
   "mod+`": "code",
 };
 
-const LIST_TYPES = ["numbered-list", "bulleted-list"];
+const LIST_TYPES = ["ol_list", "ul_list"];
 
 const isCollapsed = (selection) => selection && Range.isCollapsed(selection);
 
@@ -32,7 +32,7 @@ export const toggleBlock = (editor, format) => {
   });
 
   Transforms.setNodes(editor, {
-    type: isActive ? "paragraph" : isList ? "list-item" : format,
+    type: isActive ? "paragraph" : isList ? "list_item" : format,
   });
 
   if (!isActive && isList) {
@@ -174,7 +174,6 @@ export const withLinks = (editor) => {
     element.type === "link" ? true : isInline(element);
 
   editor.insertText = (text) => {
-    console.log("insert", text);
     if (text && isUrl(text)) {
       wrapLink(editor, text);
     } else {
@@ -184,7 +183,6 @@ export const withLinks = (editor) => {
 
   editor.insertData = (data) => {
     const text = data.getData("text/plain");
-    console.log("insert", data);
     if (text && isUrl(text)) {
       wrapLink(editor, text);
     } else {

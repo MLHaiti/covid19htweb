@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Box,
-  Stack,
   Button,
   useDisclosure,
   Drawer,
@@ -16,10 +15,7 @@ import { ArticleTable } from "./article-table";
 
 export default function ArticleView() {
   const [articleInfo, setArticleInfo] = useState({});
-  const [mode, setMode] = useState("active"); // passive or active
   const { isOpen, onOpen, onClose } = useDisclosure(false);
-
-  const [content, setContent] = useState({});
 
   const onScroll = () => {
     const { scrollTop } = document.getElementById("drawer-article-editor-body");
@@ -65,10 +61,10 @@ export default function ArticleView() {
               key={articleInfo.id}
               articleInfo={articleInfo}
               onComplete={() => {
-                console.log("complete");
                 onClose();
               }}
               autoSave={() => {}}
+              onClose={onClose}
             />
           </DrawerBody>
         </DrawerContent>

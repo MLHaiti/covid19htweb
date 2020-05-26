@@ -34,28 +34,13 @@ export const withImages = (editor) => {
           }
         }
       });
-      // for (const file of files) {
-      //   const reader = new FileReader();
-      //   const [mime] = file.type.split("/");
-
-      //   if (mime === "image") {
-      //     reader.addEventListener("load", () => {
-      //       const url = reader.result;
-      //       insertImage(editor, url);
-      //     });
-
-      //     reader.readAsDataURL(file);
-      //   }
-      // }
     } else if (isImageUrl(text)) {
-      console.log("url yes", text);
       insertImage(editor, text);
       Transforms.insertNodes(editor, {
         type: "paragraph",
         children: [{ text: "" }],
       });
     } else {
-      console.log("url no", text);
       insertData(data);
     }
   };

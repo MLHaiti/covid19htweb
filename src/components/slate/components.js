@@ -36,11 +36,11 @@ const iconMap = {
   underline: MdFormatUnderlined,
   code: MdCode,
   "block-quote": MdFormatQuote,
-  "numbered-list": MdFormatListNumbered,
-  "bulleted-list": MdFormatListBulleted,
+  ol_list: MdFormatListNumbered,
+  ul_list: MdFormatListBulleted,
   "heading-one": MdLooksOne,
-  "heading-two": MdLooksTwo,
-  "heading-three": MdLooks3,
+  title_two: MdLooksTwo,
+  title_three: MdLooks3,
   image: MdImage,
   link: MdInsertLink,
   mark: MdBrush,
@@ -128,15 +128,15 @@ export const Element = (props) => {
   switch (element.type) {
     case "block-quote":
       return <blockquote {...attributes}>{children}</blockquote>;
-    case "bulleted-list":
+    case "ul_list":
       return <ul {...attributes}>{children}</ul>;
     case "heading-one":
       return <h1 {...attributes}>{children}</h1>;
-    case "heading-two":
+    case "title_two":
       return <h2 {...attributes}>{children}</h2>;
-    case "list-item":
+    case "list_item":
       return <li {...attributes}>{children}</li>;
-    case "numbered-list":
+    case "ol_list":
       return <ol {...attributes}>{children}</ol>;
     case "image":
       return <ImageElement {...props} />;

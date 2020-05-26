@@ -11,24 +11,23 @@ import {Image} from  'components/article/media'
 
 export const element = (props) => {
   const { attributes={}, children, element } = props;
-  // console.log(element);
   switch (element.type) {
 
     case "title":
       return  <H1 {...attributes}>{children}</H1>
-    case "heading-two":
+    case "title_two":
       return  <H2 {...attributes}>{children}</H2>
-    case "heading-three":
+    case "title_three":
         return <H3 {...attributes}>{children}</H3>
-    case "heading-four":
+    case "title_four":
       return  <H4 {...attributes}>{children}</H4>
     case "quote":
         return <Quote {...attributes}>{children}</Quote>;
-    case "bulleted-list":
+    case "ul_list":
         return <Ul {...attributes} >{children}</Ul>
-    case "numbered-list":
+    case "ol_list":
       return <Ol {...attributes}>{children}</Ol>
-    case "list-item":
+    case "list_item":
         return <Li {...attributes}>{children}</Li>;
     case "image":
       return <ImageElement {...props} />;

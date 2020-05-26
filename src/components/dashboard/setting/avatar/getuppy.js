@@ -31,7 +31,6 @@ export const getUppy = (onComplete) =>
           .join("&");
         return fetch(`/api/aws/signurl?${query}`)
           .then((r) => {
-            console.log(r);
             const { signedUrl, filename, originalName, publicUrl, method } = r;
             return {
               method,

@@ -1,31 +1,27 @@
 import { Transforms, Editor, Range, Element, Node } from "slate";
-
 import { PARAGRAPH_ON_BREAK, isCollapsed } from "./helpers";
 
-export const withTests = (editor) => {
-  const { insertData, insertText, normalizeNode, isVoid, insertBreak } = editor;
+/**
+ *
+ * "children", "operations", "selection", "marks", "isInline", "isVoid", "onChange", "apply", "addMark",
+ * "deleteBackward", "deleteForward", "deleteFragment", "getFragment", "insertBreak", "insertFragment",
+ * "insertNode", "insertText", "normalizeNode", "removeMark", "setFragmentData", "insertData", "history",
+ * "redo", "undo"
+ */
 
-  editor.normalizeNode = (entry) => {
-    const [node, path] = entry;
-    if (Element.isElement(node)) {
-      // ensure that the default node is a paragraph
-      if (!node.type) {
-        Transforms.setNodes(
-          editor,
-          { type: "paragraph" },
-          { at: path, match: (n) => Editor.isBlock(editor, n) }
-        );
-        return;
-      }
-    }
+export const withList = (editor) => {
+  // console.log(editor);
+  const { normalizeNode, insertBreak } = editor;
 
-    // Fall back to the original `normalizeNode` to enforce other constraints.
-    normalizeNode(entry);
-  };
+  // editor.deleteBackward = (options) => {
+  //   console.log("back ", options);
+  //   deleteBackward(options);
+  // };
 
-  editor.insertData = (data) => insertData(data);
-
-  editor.insertText = (data) => insertText(data);
+  // editor.deleteFragment = () => {
+  //   console.log("fragment");
+  //   deleteFragment();
+  // };
 
   editor.insertBreak = () => {
     const { selection } = editor;
@@ -38,6 +34,8 @@ export const withTests = (editor) => {
 
       const { length } = Node.string(node);
       const firstOrLast = offset === 0 || offset === length;
+
+      console.log(length, firstOrLast);
 
       const needParagraph =
         firstOrLast && PARAGRAPH_ON_BREAK.includes(node.type);
@@ -55,6 +53,12 @@ export const withTests = (editor) => {
     // Transforms.splitNodes(editor, {
     //   always: true,
     // });
+  };
+
+  editor.normalizeNode = (entry) => {
+    const [node, path] = entry;
+
+    return normalizeNode(entry);
   };
 
   return editor;

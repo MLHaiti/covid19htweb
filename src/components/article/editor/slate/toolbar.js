@@ -64,19 +64,19 @@ export const Toolbar = () => {
       >
         <Group>
           <ToolbarButton
-            format="heading-two"
+            format="title_two"
             onClick={onClick}
-            isActive={isBlockActive(editor, "heading-two")}
+            isActive={isBlockActive(editor, "title_two")}
           />
           <ToolbarButton
-            format="heading-three"
+            format="title_three"
             onClick={onClick}
-            isActive={isBlockActive(editor, "heading-three")}
+            isActive={isBlockActive(editor, "title_three")}
           />
           <ToolbarButton
-            format="heading-four"
+            format="title_four"
             onClick={onClick}
-            isActive={isBlockActive(editor, "heading-four")}
+            isActive={isBlockActive(editor, "title_four")}
           />
         </Group>
         <Group>
@@ -108,14 +108,14 @@ export const Toolbar = () => {
 
         <Group>
           <ToolbarButton
-            format="numbered-list"
+            format="ol_list"
             onClick={onClick}
-            isActive={isBlockActive(editor, "numbered-list")}
+            isActive={isBlockActive(editor, "ol_list")}
           />
           <ToolbarButton
-            format="bulleted-list"
+            format="ul_list"
             onClick={onClick}
-            isActive={isBlockActive(editor, "bulleted-list")}
+            isActive={isBlockActive(editor, "ul_list")}
           />
           <ToolbarButton
             format="block-quote"

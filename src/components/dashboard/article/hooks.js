@@ -6,7 +6,5 @@ export const useArticles = async () => {
     return a ? JSON.parse(a) : [];
   });
 
-  console.log(data);
-
   return { data, error };
 };

@@ -27,3 +27,18 @@ Nous avons en tête de donner à nos utilisateurs la meilleure performance possi
 - Consultez la dernière version en ligne à l'addresse [https://covid19htweb.now.sh/](https://covid19htweb.now.sh/)
 
 
+----
+
+code of conduct
+
+who - where - when - what - how
+
+
+https://nextjs.org/blog/next-9-4
+
+
+https://ryanharris.dev/hooks-usereducer/
+https://dmitripavlutin.com/use-react-memo-wisely/
+https://amitness.com
+https://adlrocha.substack.com/p/adlrocha-immutable-databases
+https://deniseyu.io/2020/05/23/habits-of-high-performing-teams.html

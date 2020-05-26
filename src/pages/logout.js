@@ -35,7 +35,6 @@ const Logout = () => {
 
   if (ok === false) {
     setTimeout(() => {
-      console.log("silent retry");
       fetch("/api/user/logout")
         .then(() => {})
         .catch(() => {});

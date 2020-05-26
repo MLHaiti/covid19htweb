@@ -13,12 +13,12 @@ import {
   Button,
   Heading,
   Skeleton,
+  CloseButton,
 } from "@chakra-ui/core";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
-import useSWR, { mutate, trigger } from "swr";
+import useSWR from "swr";
 import { Editor } from "components/article/editor";
-import fetch from "utils/fetch";
 import { SidePanel } from "components/dashboard/article/sidepanel";
 
 // import { ArticleView } from "components/article";
@@ -27,7 +27,12 @@ import { articleTypeOptions, saveArticle } from "./helpers";
 
 const blank = [{ type: "paragraph", children: [{ text: "" }] }];
 
-export const ArticleCompositor = ({ articleInfo, autoSave, onComplete }) => {
+export const ArticleCompositor = ({
+  articleInfo,
+  autoSave,
+  onComplete,
+  onClose,
+}) => {
   const [showGuideline, setShowGuideline] = useState(
     articleInfo.id === undefined
   );
@@ -68,10 +73,10 @@ export const ArticleCompositor = ({ articleInfo, autoSave, onComplete }) => {
 
     saveArticle(_article);
   }, [data]);
-  const toggleMode = useCallback(() => {
+  const toggleMode = () => {
     const modeMap = { edit: "preview", preview: "edit" };
     setMode(modeMap[mode]);
-  }, []);
+  };
 
   const onSubmit = (data) => {
     // TODO call onComplete
@@ -155,7 +160,12 @@ export const ArticleCompositor = ({ articleInfo, autoSave, onComplete }) => {
   if (mode === "preview") {
     return (
       <Stack padding="4">
-        <Box>Preview Mode</Box>
+        <Box textAlign="right">
+          <Box as="span" mr="4">
+            Preview Mode
+          </Box>
+          <CloseButton onClick={toggleMode} />
+        </Box>
       </Stack>
     );
   }
@@ -163,8 +173,8 @@ export const ArticleCompositor = ({ articleInfo, autoSave, onComplete }) => {
   return (
     <Box width="full">
       <Box>
-        <Heading as="h2" marginY="2" textAlign="center">
-          Editè Tèks.
+        <Heading as="h3" marginY="2" textAlign="center">
+          Kompozitè.
         </Heading>
       </Box>
       <Flex direction="row" justifyContent="space-between">

@@ -15,7 +15,6 @@ export const CoverImage = ({ imageInfo, onChange }) => {
           <Stack marginTop="4" isInline spacing={12}>
             <UppyModal
               onModalClose={(data) => {
-                console.log(data);
                 if (Array.isArray(data) && data.length > 0) {
                   setImage({ src: data.uploadURL, type: data.type });
                 }
@@ -52,7 +51,6 @@ export const CoverImage = ({ imageInfo, onChange }) => {
         <Box>
           <UppyModal
             onModalClose={(data) => {
-              console.log(data);
               if (Array.isArray(data) && data.length > 0) {
                 setImage({ src: data.uploadURL, type: data.type });
               }
