@@ -5,3 +5,7 @@ export * from "./HourGlass";
 export * from "./Ripple";
 export * from "./Spinner";
 export * from "./Roller";
+export * from "./Ellipsis";
+export * from "./Grid";
+export * from "./Circle";
+export * from "./Heart";
