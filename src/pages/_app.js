@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Router from "next/router";
 import { DefaultSeo } from "next-seo";
 import { ThemeProvider, CSSReset, ColorModeProvider } from "@chakra-ui/core";
 import { initGA, logPageView } from "utils/analytics";
+import { ErrorBoundary } from "components/ErrorBoundary";
 import SEO from "../setup/seo";
 import { theme } from "../setup/theme";
-import "@uppy/core/dist/style.css";
 
 import "../styles/index.css";
 
@@ -15,34 +15,25 @@ export function reportWebVitals(metric) {
   console.log(metric);
 }
 
-class MyApp extends React.Component {
-  componentDidMount() {
+const MyApp = (props) => {
+  useEffect(() => {
     initGA();
     logPageView();
     Router.events.on("routeChangeComplete", logPageView);
-  }
+  }, []);
 
-  componentDidCatch(error, errorInfo) {
-    // TODO Make sure we log the error for further investigation
-    // console.log("CUSTOM ERROR HANDLING", error);
-    // This is needed to render errors correctly in development / production
-    super.componentDidCatch(error, errorInfo);
-  }
-
-  render() {
-    const { Component, pageProps } = this.props;
-    return (
-      <>
-        <DefaultSeo {...SEO} />
-        <ThemeProvider theme={theme}>
-          <CSSReset />
-          <ColorModeProvider>
-            <Component {...pageProps} />
-          </ColorModeProvider>
-        </ThemeProvider>
-      </>
-    );
-  }
-}
+  const { Component, pageProps } = props;
+  return (
+    <ErrorBoundary>
+      <DefaultSeo {...SEO} />
+      <ThemeProvider theme={theme}>
+        <CSSReset />
+        <ColorModeProvider>
+          <Component {...pageProps} />
+        </ColorModeProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
+  );
+};
 
 export default MyApp;
