@@ -2882,6 +2882,11 @@ clone-deep@^4.0.1:
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
 
+clsx@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.0.tgz#62937c6adfea771247c34b54d320fb99624f5702"
+  integrity sha512-3avwM37fSK5oP6M5rQ9CNe99lwxhXDOeSWVPAOYF6OazUTgZCMb0yWlJpmdD74REy1gkEaFiub2ULv4fq9GUhA==
+
 coa@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/coa/-/coa-2.0.2.tgz#43f6c21151b4ef2bf57187db0d73de229e3e7ec3"
@@ -7327,6 +7332,14 @@ react-share@^4.1.0:
   dependencies:
     classnames "^2.2.5"
     jsonp "^0.2.1"
+
+react-shimmer@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-shimmer/-/react-shimmer-3.1.0.tgz#2a32cc96697bdcdf4f3f025e2560d14abc553214"
+  integrity sha512-2XWeLEZI0kEc1HFWjYk9LZ0W9xq2IRnMI+NWbHCoPCxGPDVTNu9Tp+LvFIzeRbR0qK7w1915aMSKbpYnsyvxjw==
+  dependencies:
+    clsx "^1.1.0"
+    prop-types "^15.7.2"
 
 react-spring@^8.0.27:
   version "8.0.27"
