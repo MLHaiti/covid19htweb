@@ -27,3 +27,12 @@ Nous avons en tête de donner à nos utilisateurs la meilleure performance possi
 - Consultez la dernière version en ligne à l'addresse [https://covid19htweb.now.sh/](https://covid19htweb.now.sh/)
 
 
+----
+
+code of conduct
+
+who - where - when - what - how
+
+
+https://nextjs.org/blog/next-9-4
+

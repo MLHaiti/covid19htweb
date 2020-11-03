@@ -1,6 +1,7 @@
 require("dotenv").config();
 const withPlugins = require("next-compose-plugins");
 const withImages = require("next-images");
+const withBundleAnalyzer = require("@next/bundle-analyzer");
 const path = require("path");
 // const withPWA = require("next-pwa");
 
@@ -9,14 +10,6 @@ const nextConfig = {
   poweredByHeader: false,
   webpack: (config, options) => {
     // Fixes npm packages that depend on `fs` module
-    config.resolve.alias.components = path.join(__dirname, "./src/components");
-    config.resolve.alias.utils = path.join(__dirname, "./src/utils");
-    config.resolve.alias.middlewares = path.join(
-      __dirname,
-      "./src/middlewares"
-    );
-    config.resolve.alias.models = path.join(__dirname, "./src/models");
-
     config.node = {
       fs: "empty",
     };
@@ -40,9 +33,17 @@ const exportByEnv =
     : withPlugins(
         [
           // [withPWA, { pwa: { dest: "public" } }],
+          [
+            withBundleAnalyzer,
+            {
+              enabled: process.env.ANALYZE === "true",
+            },
+          ],
           [withImages, { exclude: path.resolve(__dirname, "src/assets/svg") }],
         ],
         nextConfig
       );
 
 module.exports = exportByEnv;
+
+// https://leerob.io/blog/learning-css-animations-by-example

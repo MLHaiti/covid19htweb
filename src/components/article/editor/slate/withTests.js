@@ -1,6 +1,3 @@
-import React from "react";
-import imageExtensions from "image-extensions";
-import isUrl from "is-url";
 import { Transforms, Editor, Range, Element, Node } from "slate";
 
 import { PARAGRAPH_ON_BREAK, isCollapsed } from "./helpers";

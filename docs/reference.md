@@ -18,3 +18,10 @@ _ https://ahrefs.com/blog/open-graph-meta-tags/
 - http://cybernext.in/
 - https://css-tricks.com/snippets/css/ribbon/
 - https://csstriggers.com/
+
+
+
+## Data
+
+- Data Table Design https://medium.com/@taras.bakusevych/data-tables-design-3c705b106a64
+- 10 Rules for better dashboard https://uxplanet.org/10-rules-for-better-dashboard-design-ef68189d734c

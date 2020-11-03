@@ -65,19 +65,19 @@ const renderNode = (value, position) => {
   switch (type) {
     case "title":
       return <H1 key={key}>{renderLeaf(value, key)}</H1>;
-    case "heading-two":
+    case "title_two":
       return <H2 key={key}>{renderLeaf(value, key)}</H2>;
-    case "heading-three":
+    case "title_three":
       return <H3 key={key}>{renderLeaf(value, key)}</H3>;
-    case "heading-four":
+    case "title_four":
       return <H4 key={key}>{renderLeaf(value, key)}</H4>;
     case "quote":
       return <Quote key={key}>{renderLeaf(value, key)}</Quote>;
-    case "bulleted-list":
+    case "ul_list":
       return <Ul key={key}>{renderLeaf(value, key)}</Ul>;
-    case "numbered-list":
+    case "ol_list":
       return <Ol key={key}>{renderLeaf(value, key)}</Ol>;
-    case "list-item":
+    case "list_item":
       return <Li key={key}>{renderLeaf(value, key)}</Li>;
     case "image":
       return (
@@ -119,12 +119,7 @@ export const ArticleView = () => {
     <Box>
       <Box>Great</Box>
       <H1>Emma</H1>
-      {value.map((v, i) => {
-        {
-          /* console.log(v); */
-        }
-        return renderNode(v, i);
-      })}
+      {value.map((v, i) => renderNode(v, i))}
     </Box>
   );
 };

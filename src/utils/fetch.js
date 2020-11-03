@@ -1,7 +1,5 @@
-import _fetch from "isomorphic-unfetch";
-
-const fetch = (url, options = {}) =>
-  _fetch(url, {
+const _fetch = (url, options = {}) =>
+  fetch(url, {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
@@ -22,4 +20,4 @@ export function checkStatus(response) {
   return Promise.reject(error);
 }
 
-export default fetch;
+export default _fetch;

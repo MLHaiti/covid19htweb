@@ -37,15 +37,15 @@ const RichEditor = () => {
         <Box>dfs</Box>
         <Box>dfs</Box>
         {/* <BlockButton format="heading-one" />
-        <BlockButton format="heading-two" />
+        <BlockButton format="title_two" />
 
         <MarkButton format="bold" />
         <MarkButton format="italic" />
         <MarkButton format="underline" />
 
         <BlockButton format="block-quote" />
-        <BlockButton format="numbered-list" />
-        <BlockButton format="bulleted-list" />
+        <BlockButton format="ol_list" />
+        <BlockButton format="ul_list" />
 
         <LinkButton />
         <ImageButton />

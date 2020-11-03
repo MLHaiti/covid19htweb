@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 import { withHistory } from "slate-history";
@@ -7,16 +7,17 @@ import { Box } from "@chakra-ui/core";
 import { handleHotKeys } from "./helpers";
 import { withLinks } from "./withLinks";
 import { withImages } from "./withImages";
-import { withTests } from "./withTests";
 import { Toolbar } from "./toolbar";
+import { withEditor } from "./withEditor";
 
 import { element, leaf } from "./components";
 
 const flow = flowRight([
+  // withList,
   withImages,
   withLinks,
-  withTests,
-  withHistory,
+  withEditor,
+  // withHistory,
   withReact,
 ]);
 
@@ -24,12 +25,10 @@ export const Editor = ({ contentRef, initialValue }) => {
   const [value, setValue] = useState(initialValue);
 
   const editor = useMemo(() => flow(createEditor()), []);
-
   const KeysHandler = useCallback(
     (event) => {
       handleHotKeys(event, editor);
-      if (event.defaultPrevented) {
-      }
+      // console.log(event);
     },
     [editor]
   );
