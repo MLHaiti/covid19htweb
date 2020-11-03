@@ -33,9 +33,7 @@ export const LoadMore = ({ loadMore, renderer, initialData }) => {
             loadingText="Loading more data"
             variantColor="green"
             onClick={async () => {
-              console.log("we will load more data");
               setIsLoading(true);
-
               try {
                 const data = await loadMore();
                 if (more) {
@@ -44,7 +42,7 @@ export const LoadMore = ({ loadMore, renderer, initialData }) => {
                   setMore(data);
                 }
               } catch (error) {
-                console.log("loading more data failed");
+                console.log("loading more data failed", error);
               }
               setIsLoading(false);
             }}

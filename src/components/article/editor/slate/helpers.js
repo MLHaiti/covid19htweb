@@ -25,12 +25,12 @@ export const iconMap = {
   underline: MdFormatUnderlined,
   code: MdCode,
   quote: MdFormatQuote,
-  "numbered-list": MdFormatListNumbered,
-  "bulleted-list": MdFormatListBulleted,
+  ol_list: MdFormatListNumbered,
+  ul_list: MdFormatListBulleted,
   "heading-one": MdLooksOne,
-  "heading-two": MdLooksTwo,
-  "heading-three": MdLooks3,
-  "heading-four": MdLooks4,
+  title_two: MdLooksTwo,
+  title_three: MdLooks3,
+  title_four: MdLooks4,
   image: MdImage,
   link: MdInsertLink,
   mark: MdBrush,
@@ -47,15 +47,15 @@ const HOTKEYS = {
 
 export const PARAGRAPH_ON_BREAK = [
   "title",
-  "heading-two",
-  "heading-three",
-  "heading-four",
+  "title_two",
+  "title_three",
+  "title_four",
   "quote",
   "image",
   "video",
 ];
 
-const LIST_TYPES = ["numbered-list", "bulleted-list"];
+export const LIST_TYPES = ["ol_list", "ul_list"];
 
 export const isCollapsed = (selection) => Range.isCollapsed(selection);
 
@@ -76,9 +76,15 @@ export const toggleBlock = (editor, format) => {
     split: true,
   });
 
-  Transforms.setNodes(editor, {
-    type: isActive ? "paragraph" : isList ? "list-item" : format,
-  });
+  if (isActive) {
+    Transforms.setNodes(editor, {
+      type: "paragraph",
+    });
+  } else {
+    Transforms.setNodes(editor, {
+      type: isList ? "list_item" : format,
+    });
+  }
 
   if (!isActive && isList) {
     const block = { type: format, children: [] };
@@ -93,9 +99,6 @@ export const isMarkActive = (editor, format) => {
 
 export const toggleMark = (editor, format) => {
   const isActive = isMarkActive(editor, format);
-  // const { selection } = editor;
-  // const collapsed = isCollapsed(selection);
-
   if (isActive) {
     Editor.removeMark(editor, format);
   } else {

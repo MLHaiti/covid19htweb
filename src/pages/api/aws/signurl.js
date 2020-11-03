@@ -30,8 +30,6 @@ const s3 = new AWS.S3();
 // });
 
 handler.get((req, res) => {
-  console.log("res.json({ ok: true })");
-
   // const presignedPUTURL = s3.getSignedUrl("putObject", {
   //   Bucket: options.bucket,
   //   Key: "user12/image.jpg", // filename

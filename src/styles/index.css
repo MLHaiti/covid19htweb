@@ -2,6 +2,13 @@ html,
 body,
 #__next {
   position: relative;
-  overflow: auto;
   scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.removeScroll {
+  overflow-x:hidden;
+  overflow-y:hidden;
 }

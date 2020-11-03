@@ -1,5 +1,23 @@
 import React from "react";
-import { Box, Spinner, Flex } from "@chakra-ui/core";
+import { Box, Spinner, Flex, Heading } from "@chakra-ui/core";
+import { Grid } from "components/spinners";
+
+export const PageSpinner = () => (
+  <Flex
+    zIndex={99999}
+    width="100vw"
+    height="50vh"
+    justifyContent="center"
+    alignItems="center"
+  >
+    <Flex flexDirection="column" alignItems="center">
+      <Grid />
+      <Heading marginTop="8" as="h4" fontSize="sm">
+        Loading
+      </Heading>
+    </Flex>
+  </Flex>
+);
 
 export const FullPageLoading = () => (
   <Flex
