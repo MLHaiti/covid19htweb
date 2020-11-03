@@ -4,7 +4,7 @@ import { Layout } from "components";
 
 import { Box, Heading, Link } from "@chakra-ui/core";
 
-export default () => (
+const Page = () => (
   <>
     <PageTitle title="Kontribye" />
     <Layout>
@@ -52,3 +52,5 @@ export default () => (
     </Layout>
   </>
 );
+
+export default Page;

@@ -1,3 +1,5 @@
 import React from "react";
 
-export default () => <div>Cool</div>;
+const Page = () => <div>Cool</div>;
+
+export default Page;

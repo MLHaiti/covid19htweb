@@ -16,7 +16,7 @@ const getOne = () => ({
 
 const dummies = Array.from(Array(4), () => getOne());
 
-export default () => {
+const Page = () => {
   const renderer = useCallback((data) => <ArticlePreview {...data} />, []);
   const loadMore = useCallback(() => Array.from(Array(10), () => getOne()), []);
 
@@ -38,3 +38,5 @@ export default () => {
     </>
   );
 };
+
+export default Page;

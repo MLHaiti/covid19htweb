@@ -6,7 +6,7 @@ import { ArticleView } from "components/account/article";
 import { PageSpinner } from "components/loading";
 import { useUser } from "utils/hooks";
 
-export default () => {
+const Page = () => {
   const user = useUser();
 
   if (!user) {
@@ -31,3 +31,5 @@ export default () => {
     </>
   );
 };
+
+export default Page;

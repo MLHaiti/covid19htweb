@@ -6,7 +6,7 @@ import { SettingView } from "components/account/setting";
 import { PageSpinner } from "components/loading";
 import { useUser } from "utils/hooks";
 
-export default function Page() {
+function Page() {
   const user = useUser();
 
   if (!user) {
@@ -31,3 +31,5 @@ export default function Page() {
     </>
   );
 }
+
+export default Page;

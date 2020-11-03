@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Box, Flex } from "@chakra-ui/core";
-import { LeftSide } from "./LeftSide;
+import { LeftSide } from "./LeftSide";
 
 // EDEFF3
 const RightSide = ({ children }) => (

@@ -1,3 +1,5 @@
 import React from "react";
 
-export default () => <div>coming</div>;
+const Page = () => <div>coming</div>;
+
+export default Page;

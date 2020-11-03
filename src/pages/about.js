@@ -4,7 +4,7 @@ import Head from "next/head";
 import { Layout } from "components";
 import { Box, Heading, Link } from "@chakra-ui/core";
 
-export default () => (
+const Page = () => (
   <>
     <Head>
       <title>Kiyes nou ye?</title>
@@ -55,3 +55,5 @@ export default () => (
     </Layout>
   </>
 );
+
+export default Page;
